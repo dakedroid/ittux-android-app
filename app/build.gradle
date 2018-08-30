@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.divaga.tecnologico"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -44,6 +44,7 @@ dependencies {
 
     // ButterKnife (for sample code brevity)
     implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // Support Libs

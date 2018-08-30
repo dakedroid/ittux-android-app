@@ -43,6 +43,19 @@
     <string name="option_retry">Retry</string>
     <string name="option_exit">Exit</string>
 
+
+    // Publicacion strings
+    <string name="publicacion_item_username">dakedroid</string>
+    <string name="publicacion_item_date">29 de Agosto, 2018</string>
+    <string name="publicacion_item_body_text">Se les avisa a todos los alumnos que tenemos que presentarnos en la explanada el dia de mañana a primera hora</string>
+    <string name="publicacion_item_content_description_username_picture">Imagen Username</string>
+    <string name="publicacion_item_content_description_imagen_body">Imagen del cuerpo principal</string>
+    <string name="publicacion_item_content_description_imagen_likes">Imagen likes</string>
+    <string name="publicacion_item_num_likes">120</string>
+    <string name="publicacion_item_content_description_share">Imagen compartir</string>
+    <string name="publicacion_item_content_description_num_comments">Imagen comentario</string>
+    <string name="publicacion_item_num_comments">20</string>
+
     <!-- Types of food I could think of in 5 minutes -->
     <string-array name="categories">
         <item>@string/value_any_category</item>

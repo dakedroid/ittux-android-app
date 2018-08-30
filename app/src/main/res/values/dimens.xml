@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="publicacion_item_keylines">8dp</dimen>
+    <dimen name="publicacion_item_md_keylines">16dp</dimen>
+
+    <dimen name="publicacion_item_user_photo_w">48dp</dimen>
+    <dimen name="publicacion_item_user_photo_h">48dp</dimen>
+
+    <dimen name="publicacion_item_username_size">16sp</dimen>
+    <dimen name="publicacion_item_date">16sp</dimen>
+    <dimen name="publicacion_item_body_size">16sp</dimen>
+</resources>

@@ -46,9 +46,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements
-        FilterDialogFragment.FilterListener,
-        RestaurantAdapter.OnRestaurantSelectedListener {
+public class MainActivity extends AppCompatActivity implements FilterDialogFragment.FilterListener, RestaurantAdapter.OnRestaurantSelectedListener {
 
     private static final String TAG = "MainActivity";
 

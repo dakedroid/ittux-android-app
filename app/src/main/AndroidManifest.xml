@@ -10,16 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity
+            android:name=".RestaurantDetailActivity"
+            android:theme="@style/AppTheme.Activity" />
+        <activity android:name=".SecondActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name="com.divaga.tecnologico.RestaurantDetailActivity"
-            android:theme="@style/AppTheme.Activity" />
     </application>
 
 </manifest>

@@ -89,4 +89,6 @@ public class Restaurant {
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
     }
+
+
 }
