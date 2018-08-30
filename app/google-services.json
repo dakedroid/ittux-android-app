@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "809447979541",
+    "firebase_url": "https://tecnologico-e23d3.firebaseio.com",
+    "project_id": "tecnologico-e23d3",
+    "storage_bucket": "tecnologico-e23d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809447979541:android:336c8774b6a98e52",
+        "android_client_info": {
+          "package_name": "com.divaga.tecnologico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809447979541-10s60fvt5p933t3p80j2da02g6kfmljl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCuX3gbK6xyxVcIrOfnUgGtGn0EJdCzsU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
