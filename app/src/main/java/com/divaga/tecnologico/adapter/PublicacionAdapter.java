@@ -1,6 +1,5 @@
 package com.divaga.tecnologico.adapter;
 
-import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,14 +11,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.divaga.tecnologico.R;
 import com.divaga.tecnologico.model.Publicacion;
-import com.divaga.tecnologico.model.Restaurant;
-import com.divaga.tecnologico.util.RestaurantUtil;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
 /**
  * RecyclerView adapter for a list of Publicaciones
@@ -75,6 +74,11 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
         TextView numCommentsView;
 
 
+        private static final SimpleDateFormat FORMAT  = new SimpleDateFormat(
+                "MM/dd/yyyy", Locale.US);
+
+
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -93,12 +97,16 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
             usernameView.setText(publicacion.getUsername());
             descriptionView.setText(publicacion.getDescription());
 
+            if (publicacion.getTimestamp() != null) {
+                dateView.setText(FORMAT.format(publicacion.getTimestamp()));
+            }
+
             Glide.with(photoView.getContext())
                     .load(publicacion.getPhoto())
                     .into(photoView);
 
             numLikesView.setText(String.valueOf(publicacion.getNumLikes()));
-            numCommentsView.setText(String.valueOf(publicacion.getNumComments()));
+           // numCommentsView.setText(String.valueOf(publicacion.getNumComments()));
 
 
             // Click listener

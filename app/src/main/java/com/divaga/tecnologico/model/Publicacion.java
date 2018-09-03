@@ -11,25 +11,21 @@ import java.util.Date;
 @IgnoreExtraProperties
 public class Publicacion {
 
-    public static final String FIELD_CITY = "city";
-    public static final String FIELD_CATEGORY = "category";
-    public static final String FIELD_PRICE = "price";
-    public static final String FIELD_POPULARITY = "numRatings";
-    public static final String FIELD_AVG_RATING = "avgRating";
-
     private String description;
     private String photo;
     private String username;
     private String user_photo;
     private int numComments;
     private int numLikes;
-    private long timecreated;
+    private @ServerTimestamp Date timestamp;
+
+    //  private @ServerTimestamp Date timestamp;
 
 
     public Publicacion() {
     }
 
-    public Publicacion(String description, String photo, String username, String user_photo, int numComments, int numLikes, long timecreated) {
+    public Publicacion(String description, String photo, String username, String user_photo, int numComments, int numLikes) {
 
         this.description = description;
         this.photo = photo;
@@ -37,7 +33,7 @@ public class Publicacion {
         this.user_photo = user_photo;
         this.numComments = numComments;
         this.numLikes = numLikes;
-        this.timecreated = timecreated;
+
     }
 
 
@@ -89,11 +85,11 @@ public class Publicacion {
         this.numLikes = numLikes;
     }
 
-    public long getTimecreated() {
-        return timecreated;
+    public Date getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimecreated(long timecreated) {
-        this.timecreated = timecreated;
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 }
