@@ -19,6 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -106,9 +107,11 @@ public class InicioActivity extends AppCompatActivity implements PublicacionAdap
         // writeOnServer();
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
+
         // Start listening for Firestore updates
         if (mAdapter != null) {
             mAdapter.startListening();

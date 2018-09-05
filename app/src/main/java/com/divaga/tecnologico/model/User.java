@@ -14,18 +14,18 @@ public class User {
 
     private String userId;
     private String userName;
-    private Uri photo;
+    private String photo;
     private String email;
     private String permisos;
 
     public User() {
     }
 
-    public User(FirebaseUser user, String userName, String permisos) {
+    public User(FirebaseUser user, String userName, String permisos, String photoUrl) {
 
         this.userId = user.getUid();
         this.email = user.getEmail();
-        this.photo = user.getPhotoUrl();
+        this.photo = photoUrl;
         this.userName = userName;
         this.permisos = permisos;
     }
@@ -53,6 +53,14 @@ public class User {
 
     public void setPermisos(String permisos) {
         this.permisos = permisos;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getEmail() {

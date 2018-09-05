@@ -72,6 +72,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     private FirebaseUser user;
     private User mUser;
+
+    private String mName;
+    private String mPermissions;
     // [END declare_auth]
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -205,14 +208,19 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
 
-
-
                             user = mAuth.getCurrentUser();
 
-                            mUser = new User(user, name, permisos);
+                            mName = name;
+
+                            mPermissions = permisos;
 
                             if (mFileUri != null) {
                                 uploadFromUri(mFileUri);
+                                writeUserWithImage();
+                            }else {
+
+                                writeUserWithDefaultImage();
+
                             }
 
 
@@ -232,7 +240,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         // [END create_user_with_email]
     }
 
-    private void writeUser(){
+
+    private void writeUserWithDefaultImage(){
+
+
+        mUser = new User(user, mName, mPermissions, "http://pcct.tecnm.mx/PCCT/resources/images/logos/logo-tecnm.png");
 
         FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 
@@ -246,14 +258,54 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-
                     updateUIEmail(user);
 
-                } else {
+                    } else {
                     Log.w("InicioActivity", "write batch failed.", task.getException());
-                }
+                    }
             }
         });
+
+    }
+
+    private void writeUserWithImage(){
+
+        storageRef.child("photos").child(mFileUri.getLastPathSegment()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+
+                mUser = new User(user, mName, mPermissions, uri.toString());
+
+                FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+
+                WriteBatch batch = mFirestore.batch();
+
+                DocumentReference restRef = mFirestore.collection("usuarios").document();
+
+                batch.set(restRef, mUser);
+
+                batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+
+                            updateUIEmail(user);
+
+                        } else {
+                            Log.w("InicioActivity", "write batch failed.", task.getException());
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
+
+
     }
 
     private boolean validateForm() {
@@ -403,9 +455,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         // Upload succeeded
                         Log.d(TAG, "uploadFromUri: getDownloadUri success");
 
-                        writeUser();
-
-
                         /*
                         // [START_EXCLUDE]
                         broadcastUploadFinished(downloadUri, fileUri);
@@ -435,7 +484,4 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         // Show loading spinner
         showProgressDialog();
     }
-
-
-
 }
