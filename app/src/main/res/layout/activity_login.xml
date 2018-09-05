@@ -28,10 +28,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/publicacion_item_md_keylines"
+            android:gravity="center"
             android:text="Iniciar Sesion"
             android:textColor="#4c565f"
             android:textSize="29sp"
-            android:gravity="center"
 
             />
 
