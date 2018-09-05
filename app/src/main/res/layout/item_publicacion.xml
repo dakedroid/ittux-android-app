@@ -82,6 +82,8 @@
             android:id="@+id/publicacion_item_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="200dp"
+            android:maxHeight="380dp"
             android:layout_marginTop="@dimen/publicacion_item_keylines"
             android:contentDescription="@string/publicacion_item_content_description_imagen_body"
             android:src="@drawable/pizza_monster">

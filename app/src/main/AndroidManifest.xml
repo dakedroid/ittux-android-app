@@ -13,11 +13,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".InicioActivity">
 
-
         </activity>
         <activity android:name=".DetailActivity" />
-        <activity android:name=".sesion.LoginActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-
+        <activity
+            android:name=".sesion.LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,20 +26,21 @@
         </activity>
         <activity android:name=".DocumentosActivity">
 
+        </activity>
+        <activity
+            android:name=".sesion.RegisterActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
-        <activity android:name=".sesion.RegisterActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-
-        </activity>
-
-        <activity android:name=".storage.MainActivity"  android:launchMode="singleTask">
+        <activity
+            android:name=".storage.MainActivity"
+            android:launchMode="singleTask">
 
         </activity>
 
         <service
             android:name=".storage.MyDownloadService"
-            android:exported="false"/>
-
+            android:exported="false" />
         <service
             android:name=".storage.MyUploadService"
             android:exported="false" />

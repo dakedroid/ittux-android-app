@@ -12,8 +12,13 @@ import android.view.View;
 
 import com.divaga.tecnologico.adapter.PublicacionAdapter;
 import com.divaga.tecnologico.model.Publicacion;
+import com.divaga.tecnologico.sesion.LoginActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,7 +29,10 @@ import com.google.firebase.firestore.WriteBatch;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InicioActivity extends AppCompatActivity implements PublicacionAdapter.OnPublicacionSelectedListener {
+public class InicioActivity extends AppCompatActivity implements PublicacionAdapter.OnPublicacionSelectedListener, View.OnClickListener {
+
+    private FirebaseAuth mAuth;
+    private GoogleSignInClient mGoogleSignInClient;
 
     private FirebaseFirestore mFirestore;
     private Query mQuery;
@@ -49,6 +57,8 @@ public class InicioActivity extends AppCompatActivity implements PublicacionAdap
 
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
+
+
 
         // Get ${LIMIT} restaurants
         mQuery = mFirestore.collection("publicaciones")
@@ -80,7 +90,20 @@ public class InicioActivity extends AppCompatActivity implements PublicacionAdap
         mPublicacionesRecycler.setLayoutManager(new LinearLayoutManager(this));
         mPublicacionesRecycler.setAdapter(mAdapter);
 
-       // writeOnServer();
+        mPublicacionesRecycler.setNestedScrollingEnabled(false);
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        // writeOnServer();
     }
 
     @Override
@@ -152,4 +175,31 @@ public class InicioActivity extends AppCompatActivity implements PublicacionAdap
             }
         });
     }
+
+
+    @Override
+    public void onClick(View view) {
+
+        int i = view.getId();
+        if (i == R.id.dashboar_btn_9) {
+            signOut();
+        }
+    }
+
+    private void signOut() {
+        // Firebase sign out
+        mAuth.signOut();
+
+        // Google sign out
+        mGoogleSignInClient.signOut().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
+
+        startActivity(new Intent(InicioActivity.this, LoginActivity.class));
+    }
+
 }
