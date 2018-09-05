@@ -23,5 +23,8 @@
     <string name="publicacion_item_content_description_share">Imagen compartir</string>
     <string name="publicacion_item_content_description_num_comments">Imagen comentario</string>
     <string name="publicacion_item_num_comments">20</string>
+    <string name="dashboar_user">JORGE LUIS SIXTO ROBERTO</string>
+    <string name="dashboar_email">jorge_sixto@outlook.com</string>
+    <string name="dashboar_head_imagen_description">Imagendeencabezado</string>
 
 </resources>

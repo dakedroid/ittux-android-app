@@ -8,7 +8,7 @@
     tools:context="com.divaga.tecnologico.DetailActivity">
 
     <RelativeLayout
-        android:id="@+id/publicacion_top_card"
+        android:id="@+id/dashboar_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="4dp">
@@ -124,7 +124,7 @@
         android:id="@+id/fab_show_comentario_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/publicacion_top_card"
+        android:layout_alignBottom="@+id/dashboar_head"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="-28dp"
         android:layout_marginRight="16dp"
@@ -135,7 +135,7 @@
         android:id="@+id/recycler_comentarios"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/publicacion_top_card"
+        android:layout_below="@+id/dashboar_head"
         android:background="@android:color/transparent"
         android:clipToPadding="false"
         android:paddingBottom="16dp"
@@ -149,7 +149,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/publicacion_top_card"
+        android:layout_below="@+id/dashboar_head"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:orientation="vertical"
