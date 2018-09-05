@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.divaga.tecnologico">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,13 +12,38 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".InicioActivity">
+
+
+        </activity>
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".sesion.LoginActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".DocumentosActivity">
+
+
+        </activity>
+        <activity android:name=".sesion.RegisterActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+
+        </activity>
+
+        <activity android:name=".storage.MainActivity"  android:launchMode="singleTask">
+
+        </activity>
+
+        <service
+            android:name=".storage.MyDownloadService"
+            android:exported="false"/>
+
+        <service
+            android:name=".storage.MyUploadService"
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff">
+
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="@dimen/publicacion_item_md_keylines"
+           android:layout_gravity="center_horizontal"
+            android:background="@drawable/tec"
+            android:scaleType="centerCrop">
+        </FrameLayout>
+
+        <com.divaga.tecnologico.customfonts.MyTextView
+            android:id="@+id/head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/publicacion_item_md_keylines"
+            android:text="Iniciar Sesion"
+            android:textColor="#4c565f"
+            android:textSize="29sp"
+            android:gravity="center"
+
+            />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/email1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorhint"
+            android:textColor="@color/colortext">
+
+            <com.divaga.tecnologico.customfonts.MyEditText
+
+                android:id="@+id/field_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="46dp"
+                android:background="#0000"
+                android:drawableLeft="@drawable/user"
+                android:drawablePadding="12dp"
+                android:gravity="left"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="Correo Electronico"
+                android:padding="12dp"
+                android:textColor="@color/colortext"
+                android:textColorHint="@color/colorhint"
+                android:textSize="18sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_height="1dp"
+            android:background="#59d58d"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorhint"
+            android:textColor="@color/colortext">
+
+
+            <com.divaga.tecnologico.customfonts.MyEditText
+
+                android:id="@+id/field_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="46dp"
+                android:background="#0000"
+                android:drawableLeft="@drawable/pass"
+                android:drawablePadding="12dp"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:textColor="@color/colortext"
+                android:textColorHint="@color/colorhint"
+
+
+                android:textSize="18sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_height="1dp"
+            android:background="#59d58d"/>
+
+        <com.divaga.tecnologico.customfonts.MyTextView
+
+            android:id="@+id/create_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+            android:gravity="center_horizontal"
+            android:onClick="onClick"
+            android:text="¿No tienes cuenta?"
+            android:textColor="#3367d6"
+            android:textSize="15dp" />
+
+        <com.divaga.tecnologico.customfonts.MyTextView
+
+            android:id="@+id/email_sign_in_button_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+            android:background="@drawable/rect1"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="8dp"
+            android:text="Iniciar Sesion"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <com.divaga.tecnologico.customfonts.MyTextView
+            android:id="@+id/or"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="ó"
+
+            android:gravity="center"
+            android:lines="1"
+            android:textColor="@color/colorhint"
+
+
+
+            />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/publicacion_item_keylines"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</RelativeLayout>

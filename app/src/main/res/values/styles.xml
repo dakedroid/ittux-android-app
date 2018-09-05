@@ -1,9 +1,9 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryDark">#1976D2</item>
+        <item name="colorAccent">#4CAF50</item>
 
         <item name="android:textColorPrimary">@color/greyPrimary</item>
         <item name="android:textColorSecondary">@color/greySecondary</item>
@@ -95,5 +95,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">150dp</item>
     </style>
+
+    <style name="mAppTheme" parent="AppTheme" />
 
 </resources>
