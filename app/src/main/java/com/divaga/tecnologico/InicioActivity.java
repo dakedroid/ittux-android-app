@@ -181,6 +181,30 @@ public class InicioActivity extends AppCompatActivity implements PublicacionAdap
     public void onClick(View view) {
 
         int i = view.getId();
+        if (i == R.id.dashboar_btn_1) {
+            signOut();
+        }
+        if (i == R.id.dashboar_btn_2) {
+            signOut();
+        }
+        if (i == R.id.dashboar_btn_3) {
+            signOut();
+        }
+        if (i == R.id.dashboar_btn_4) {
+            signOut();
+        }
+        if (i == R.id.dashboar_btn_5) {
+            signOut();
+        }
+        if (i == R.id.dashboar_btn_6) {
+            signOut();
+        }
+        if (i == R.id.dashboar_btn_7) {
+            signOut();
+        }
+        if (i == R.id.dashboar_btn_8) {
+            signOut();
+        }
         if (i == R.id.dashboar_btn_9) {
             signOut();
         }
