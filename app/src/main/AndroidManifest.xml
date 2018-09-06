@@ -11,9 +11,7 @@
         android:roundIcon="@mipmap/tecnologico"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InicioActivity">
-
-        </activity>
+        <activity android:name=".InicioActivity"></activity>
         <activity android:name=".DetailActivity" />
         <activity
             android:name=".sesion.LoginActivity"
@@ -24,19 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DocumentosActivity">
-
-        </activity>
+        <activity android:name=".DocumentosActivity"></activity>
         <activity
             android:name=".sesion.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".storage.MainActivity"
-            android:launchMode="singleTask">
-
-        </activity>
+            android:launchMode="singleTask"></activity>
 
         <service
             android:name=".storage.MyDownloadService"
@@ -45,6 +37,7 @@
             android:name=".storage.MyUploadService"
             android:exported="false" />
 
+        <activity android:name=".DasboardActivity"></activity>
     </application>
 
 </manifest>

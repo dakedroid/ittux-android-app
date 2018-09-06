@@ -30,10 +30,8 @@ import com.google.firebase.firestore.WriteBatch;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InicioActivity extends AppCompatActivity implements PublicacionAdapter.OnPublicacionSelectedListener, View.OnClickListener {
+public class InicioActivity extends AppCompatActivity implements PublicacionAdapter.OnPublicacionSelectedListener{
 
-    private FirebaseAuth mAuth;
-    private GoogleSignInClient mGoogleSignInClient;
 
     private FirebaseFirestore mFirestore;
     private Query mQuery;
@@ -42,7 +40,6 @@ public class InicioActivity extends AppCompatActivity implements PublicacionAdap
 
     private static final int LIMIT = 50;
 
-    // private MainActivityViewModel mViewModel;
 
     @BindView(R.id.recycler_publicaciones)
     RecyclerView mPublicacionesRecycler;
@@ -94,15 +91,7 @@ public class InicioActivity extends AppCompatActivity implements PublicacionAdap
         mPublicacionesRecycler.setNestedScrollingEnabled(false);
 
 
-        mAuth = FirebaseAuth.getInstance();
 
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         // writeOnServer();
     }
@@ -179,54 +168,5 @@ public class InicioActivity extends AppCompatActivity implements PublicacionAdap
         });
     }
 
-
-    @Override
-    public void onClick(View view) {
-
-        int i = view.getId();
-        if (i == R.id.dashboar_btn_1) {
-            signOut();
-        }
-        if (i == R.id.dashboar_btn_2) {
-            signOut();
-        }
-        if (i == R.id.dashboar_btn_3) {
-            signOut();
-        }
-        if (i == R.id.dashboar_btn_4) {
-            signOut();
-        }
-        if (i == R.id.dashboar_btn_5) {
-            signOut();
-        }
-        if (i == R.id.dashboar_btn_6) {
-            signOut();
-        }
-        if (i == R.id.dashboar_btn_7) {
-            signOut();
-        }
-        if (i == R.id.dashboar_btn_8) {
-            signOut();
-        }
-        if (i == R.id.dashboar_btn_9) {
-            signOut();
-        }
-    }
-
-    private void signOut() {
-        // Firebase sign out
-        mAuth.signOut();
-
-        // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                    }
-                });
-
-        startActivity(new Intent(InicioActivity.this, LoginActivity.class));
-    }
 
 }

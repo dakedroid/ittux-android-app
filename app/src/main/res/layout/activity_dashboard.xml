@@ -81,14 +81,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 tools:ignore="ExtraText">
+
                 <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/dashboar_btn_1"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:id="@+id/dashboar_btn_1"
                     android:layout_margin="10dp"
                     android:layout_marginTop="10dp"
+                    android:onClick="onClick"
                     android:padding="15dp"
-                    android:src="@drawable/fui_ic_phone_white_24dp"  />
+                    android:src="@drawable/fui_ic_phone_white_24dp" />
 
 
                 <android.support.design.widget.FloatingActionButton
@@ -97,15 +99,18 @@
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:layout_marginTop="10dp"
+                    android:onClick="onClick"
                     android:padding="15dp"
-                    android:src="@drawable/fui_ic_twitter_bird_white_24dp"/>
+                    android:src="@drawable/fui_ic_twitter_bird_white_24dp" />
                 />
+
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/dashboar_btn_3"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:layout_marginTop="10dp"
+                    android:onClick="onClick"
                     android:padding="15dp"
                     android:src="@drawable/fui_ic_mail_white_24dp" />
                 />
@@ -154,6 +159,7 @@
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:layout_marginTop="10dp"
+                    android:onClick="onClick"
                     android:padding="15dp"
                     android:src="@drawable/fui_ic_twitter_bird_white_24dp" />
                 />
@@ -164,6 +170,7 @@
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:layout_marginTop="10dp"
+                    android:onClick="onClick"
                     android:padding="15dp"
                     android:src="@drawable/fui_ic_phone_white_24dp" />
                 />
@@ -174,6 +181,7 @@
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:layout_marginTop="10dp"
+                    android:onClick="onClick"
                     android:padding="15dp"
                     android:src="@drawable/fui_ic_github_white_24dp" />
                 />
@@ -222,6 +230,7 @@
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:layout_marginTop="10dp"
+                    android:onClick="onClick"
                     android:padding="15dp"
                     android:src="@drawable/fui_ic_mail_white_24dp" />
                 />
@@ -232,6 +241,7 @@
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:layout_marginTop="10dp"
+                    android:onClick="onClick"
                     android:padding="15dp"
                     android:src="@drawable/fui_ic_twitter_bird_white_24dp" />
                 />
@@ -242,6 +252,7 @@
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:layout_marginTop="10dp"
+                    android:onClick="onClick"
                     android:padding="15dp"
                     android:src="@drawable/fui_ic_mail_white_24dp" />
                 />
