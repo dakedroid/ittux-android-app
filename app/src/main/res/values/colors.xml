@@ -12,4 +12,19 @@
     <color name="colorhint">#a9aaac</color>
 
     <color name="colorWhite">#fff</color>
+
+
+
+    <color name="colorDocument1">#F44336</color>
+    <color name="colorDocument2">#FF4081</color>
+    <color name="colorDocument3">#7C4DFF</color>
+    <color name="colorDocument4">#3F51B5</color>
+    <color name="colorDocument5">#03A9F4</color>
+    <color name="colorDocument6">#FF5722</color>
+    <color name="colorDocument7">#4CAF50</color>
+    <color name="colorDocument8">#FFEB3B</color>
+    <color name="colorDocument9">#795548</color>
+    <color name="colorDocument10">#9E9E9E</color>
+    <color name="colorDocument11">#607D8B</color>
+
 </resources>

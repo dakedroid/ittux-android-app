@@ -1,4 +1,4 @@
-package com.divaga.tecnologico;
+package com.divaga.tecnologico.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 
+import com.divaga.tecnologico.R;
 import com.divaga.tecnologico.model.Comentario;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -27,7 +28,7 @@ public class ComentarioDialogFragment extends DialogFragment {
     @BindView(R.id.publicacion_form_text)
     EditText mComentarioText;
 
-    interface ComentarioListener {
+    public interface ComentarioListener {
 
         void onComentar(Comentario comentario);
 

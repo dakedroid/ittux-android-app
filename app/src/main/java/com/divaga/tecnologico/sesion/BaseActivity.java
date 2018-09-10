@@ -22,6 +22,7 @@ public class BaseActivity extends AppCompatActivity {
         }
 
         mProgressDialog.show();
+        mProgressDialog.setCanceledOnTouchOutside(false);
     }
 
     public void hideProgressDialog() {

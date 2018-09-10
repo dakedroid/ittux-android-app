@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.divaga.tecnologico.adapter.ComentarioAdapter;
+import com.divaga.tecnologico.fragments.ComentarioDialogFragment;
 import com.divaga.tecnologico.model.Comentario;
 import com.divaga.tecnologico.model.Publicacion;
 import com.google.android.gms.tasks.OnFailureListener;

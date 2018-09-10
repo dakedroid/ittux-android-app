@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:textSize="20sp"
+    android:text="Selecciona"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="@dimen/publicacion_item_keylines"
+    android:layout_marginBottom="@dimen/publicacion_item_keylines"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+</TextView>

@@ -58,7 +58,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
             signOut();
         }
         if (i == R.id.dashboar_btn_6) {
-            signOut();
+            startActivity(new Intent(DasboardActivity.this, DocumentosActivity.class));
         }
         if (i == R.id.dashboar_btn_7) {
             signOut();

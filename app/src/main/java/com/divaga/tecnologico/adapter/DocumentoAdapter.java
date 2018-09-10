@@ -11,12 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.divaga.tecnologico.R;
 import com.divaga.tecnologico.model.Documento;
-import com.divaga.tecnologico.model.Publicacion;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
-
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,10 +74,10 @@ public class DocumentoAdapter extends FirestoreAdapter<DocumentoAdapter.ViewHold
 
             int resourceType = 0;
 
-            if(documento.getType().equals("pdf")){
+            if(documento.getType().equals(".pdf")){
                 resourceType = R.drawable.pdf;
 
-            }else if (documento.getType().equals("docx")){
+            }else if (documento.getType().equals(".docx")){
 
 
             }
