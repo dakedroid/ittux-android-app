@@ -28,7 +28,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Dialog Fragment containing Comentario form.
@@ -66,11 +65,7 @@ public class PublishDocumentDialogFragment extends DialogFragment{
     @BindView(R.id.progress)
     ProgressBar pbar;
 
-    @BindView(R.id.dialog_documento_username)
-    TextView username;
 
-    @BindView(R.id.dialog_documento_documento_photo)
-    CircleImageView circleImageView;
 
     @BindView(R.id.dialog_documento_filename)
     TextView txtFileName;
@@ -130,12 +125,28 @@ public class PublishDocumentDialogFragment extends DialogFragment{
 
                 name = filePath.getPath().substring(filePath.getPath().lastIndexOf("/"));
 
+                name = name.replace("/", "");
+
                 txtFileName.setText(name);
 
                 int id = 0;
 
                 if (extension.equals(".pdf")){
                     id = R.drawable.pdf;
+                }else if (extension.equals(".docx") || extension.equals(".doc") ){
+                    id = R.drawable.word;
+
+                }else if (extension.equals(".ppt") || extension.equals(".pptx") ){
+                    id = R.drawable.powerpoint;
+
+                }else if (extension.equals(".xls") || extension.equals(".xlsx") ){
+                    id = R.drawable.excel;
+
+                }else if (extension.equals(".jpg") || extension.equals(".png")  || extension.equals(".jpeg")){
+                    id = R.drawable.picture;
+
+                }else if (extension.equals(".zip")){
+                    id = R.drawable.zip;
                 }
 
                 Glide.with(this)
@@ -172,7 +183,7 @@ public class PublishDocumentDialogFragment extends DialogFragment{
         View v = inflater.inflate(R.layout.dialog_documento, container, false);
         ButterKnife.bind(this, v);
 
-        String[] s = {"Residencias", "Servicio Social", "Becas", "Adminsitrativo"};
+        String[] s = {getString(R.string.residencias), getString(R.string.servicio_social), getString(R.string.becas), getString(R.string.administrativo)};
 
         ArrayAdapter<String> adp = new ArrayAdapter<String>(getActivity(), R.layout.spinner_publish, s);
 
@@ -184,8 +195,6 @@ public class PublishDocumentDialogFragment extends DialogFragment{
                 showFileChooser();
             }
         });
-
-
 
         return v;
     }
@@ -212,7 +221,7 @@ public class PublishDocumentDialogFragment extends DialogFragment{
 
         Documento documento = new Documento();
 
-        documento.setName(name);
+        documento.setName(spinner.getSelectedItem().toString().toLowerCase() + "-" + name);
         documento.setType(extension);
         documento.setCategory(spinner.getSelectedItem().toString());
         documento.setUsername(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());

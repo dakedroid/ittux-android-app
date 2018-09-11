@@ -1,9 +1,17 @@
 package com.divaga.tecnologico;
 
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -26,16 +34,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.WriteBatch;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DocumentosActivity extends BaseActivity implements DocumentoAdapter.OnDocumentoSelectedListener, View.OnClickListener, PublishDocumentDialogFragment.DocumentoListener{
-
 
     private FirebaseAuth mAuth;
 
@@ -46,6 +56,8 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
     private Query mQuery;
 
     private DocumentoAdapter mAdapter;
+
+    private  Documento mDocumento;
 
 
     private PublishDocumentDialogFragment mPublishDialog;
@@ -62,7 +74,6 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
         setContentView(R.layout.activity_documentos);
 
 
-
         ButterKnife.bind(this);
 
         FirebaseFirestore.setLoggingEnabled(true);
@@ -77,11 +88,11 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
 
         // Get ${LIMIT} restaurants
         mQuery = mFirestore.collection("documentos")
-                //.orderBy("numComents", Query.Direction.DESCENDING)
+                .orderBy("category", Query.Direction.DESCENDING)
                 .limit(LIMIT);
 
         // RecyclerView
-        mAdapter = new DocumentoAdapter(mQuery, this) {
+        mAdapter = new DocumentoAdapter(mQuery, this, getApplicationContext()) {
             @Override
             protected void onDataChanged() {
                 // Show/hide content if the query returns empty.
@@ -113,7 +124,17 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
 
     @Override
     public void OnDocumentoSelected(DocumentSnapshot documento) {
-        Toast.makeText(this, "Descargando Documento", Toast.LENGTH_SHORT).show();
+
+
+        mDocumento = documento.toObject(Documento.class);
+
+        if (isStoragePermissionGranted()){
+
+            download(mDocumento);
+
+        }
+
+
     }
 
     @Override
@@ -195,8 +216,6 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
     @Override
     public void onSubirDocumento(final Documento documento, Uri filePath) {
 
-
-
         final StorageReference fileRef = storageRef.child("documentos").child(documento.getName());
 
         fileRef.putFile(filePath).
@@ -255,4 +274,143 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
         // Show loading spinner
         showProgressDialog();
     }
+
+    public void download(final Documento documento){
+
+        Toast.makeText(this, "Descargando Documento", Toast.LENGTH_SHORT).show();
+
+        showProgressDialog();
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference().child("documentos");
+
+        final File root = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + File.separator + "TECNOLOGICO_ARCHIVOS" + File.separator +  documento.getName() + documento.getType());
+
+        //final File localFile =  ("documentos", documento.getType().replace(".", ""))
+
+
+        storageRef.child(documento.getName()).getFile(root).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+
+
+                hideProgressDialog();
+
+                showFileDialog( root.getPath(), documento.getType());
+
+                Toast.makeText(DocumentosActivity.this, "Descarga finalizada", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+
+                //Log.w(TAG, "download:FAILURE", exception);
+
+            }
+        });
+    }
+
+    public void showFileDialog(final String path, final String type){
+
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DocumentosActivity.this);
+
+        // set title
+        alertDialogBuilder.setTitle("Tu archivo ya se descargo");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Seleccione la opcion de 'Abrir archivo'")
+                .setCancelable(false)
+                .setPositiveButton("Abrir archivo",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // if this button is clicked, close
+                        // current activity
+
+                        dialog.cancel();
+
+                        File file = new File(path);
+                        Intent target = new Intent(Intent.ACTION_VIEW);
+
+                        if(type.equals(".pdf")){
+                            target.setDataAndType(Uri.fromFile(file),"application/pdf");
+
+                        }else if (type.equals(".jpg") || type.equals(".jpeg") || type.equals(".png")){
+
+                            target.setDataAndType(Uri.fromFile(file),"image/*");
+
+                        }else if (type.equals(".doc") || type.equals(".docx") || type.equals(".odt")){
+
+                            String word =  "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
+                            target.setDataAndType(Uri.fromFile(file), word);
+
+                        }else if (type.equals(".pptx") || type.equals(".ppt")){
+
+                            target.setDataAndType(Uri.fromFile(file), "application/vnd.openxmlformats-officedocument.presentationml.presentation");
+
+                        }else if (type.equals(".xls") || type.equals(".xlsx")){
+
+                            target.setDataAndType(Uri.fromFile(file), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+                        }else if (type.equals(".zip")){
+
+                            target.setDataAndType(Uri.fromFile(file), "application/zip");
+
+                        }
+
+                        target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+
+                        Intent intent = Intent.createChooser(target, "Open File");
+                        try {
+                            startActivity(intent);
+                        } catch (ActivityNotFoundException e) {
+                            // Instruct the user to install a PDF reader here, or something
+                        }
+
+                    }
+                })
+                .setNegativeButton("Cancelar",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // if this button is clicked, just close
+                        // the dialog box and do nothing
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
+    public  boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Log.v("This Activity","Permission is granted");
+                return true;
+            } else {
+
+                Log.v("This Activity","Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("This Activity","Permission is granted");
+            return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            Log.v("This Activity","Permission: "+permissions[0]+ "was "+grantResults[0]);
+            //resume tasks needing this permission
+            download(mDocumento);
+
+        }
+    }
+
 }

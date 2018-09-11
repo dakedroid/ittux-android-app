@@ -15,14 +15,14 @@
 
 
         <android.support.v7.widget.CardView
-
+            android:id="@+id/item_documentos_category"
            app:cardBackgroundColor="@color/colorDocument7"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="30dp">
 
             <TextView
-                android:id="@+id/item_documentos_category"
+                android:id="@+id/item_documentos_txt_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

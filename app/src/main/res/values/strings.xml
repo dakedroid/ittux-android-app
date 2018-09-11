@@ -89,5 +89,11 @@
     <string name="dashboar_text_9">Cerrar</string>
 
 
+    <string name="residencias">Residencias</string>
+    <string name="servicio_social">Servicio Social</string>
+    <string name="becas">Becas</string>
+    <string name="administrativo">Administrativo</string>
+
+
 </resources>
 
