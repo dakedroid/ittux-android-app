@@ -36,7 +36,8 @@
         <service
             android:name=".storage.MyUploadService"
             android:exported="false" />
-
+        <activity android:name=".AvisosActivity"></activity>
+        <activity android:name=".ConvocatoriaActivity"></activity>
         <activity android:name=".DasboardActivity"></activity>
     </application>
 

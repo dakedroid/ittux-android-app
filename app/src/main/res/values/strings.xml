@@ -78,15 +78,26 @@
 
 
     //Dashboard
-    <string name="dashboar_text_1">Residencias</string>
-    <string name="dashboar_text_2">Escolares</string>
-    <string name="dashboar_text_3">Servicio</string>
-    <string name="dashboar_text_4">Difucion</string>
-    <string name="dashboar_text_5">Notificaciones</string>
-    <string name="dashboar_text_6">Avisos</string>
-    <string name="dashboar_text_7">Div. Estudios</string>
-    <string name="dashboar_text_8">Alerta</string>
-    <string name="dashboar_text_9">Cerrar</string>
+    <string name="dashboard_txt_1">Publicaciones</string>
+    <string name="dashboard_txt_4">Residencias Profesionales</string>
+    <string name="dashboard_txt_7">Editar</string>
+    <string name="dashboard_txt_2">Convocatorias</string>
+    <string name="dashboard_txt_5">Servicio Social</string>
+    <string name="dashboard_txt_3">Avisos</string>
+    <string name="dashboard_txt_6">Documentos Descarga</string>
+    <string name="dashboard_txt_9">Ajustes</string>
+    <string name="dashboard_txt_8">Cerrar Sesion</string>
+
+
+    //item convocarotia
+    <string name="convocatoria_item_username">Usuario de la app</string>
+    <string name="convocatoria_item_date">Fecha de publicacion</string>
+    <string name="convocatoria_item_description">Esta e la convocatoria con base a la beca de manutencion, correpondiente al año 2019, los domentos se estaran recibiendo ne escolares.</string>
+
+    <string name="convocatoria_item_content_description_imagen_likes">Imagen likes</string>
+    <string name="convocatoria_item_btn_descargar">Desacagar</string>
+    <string name="convocatoria_item_date_l">Fecha limite</string>
+    <string name="aviso_item_description">Aviso importante: Mañana oficialmente no habra clases hasta proximo aviso</string>
 
 
     <string name="residencias">Residencias</string>
