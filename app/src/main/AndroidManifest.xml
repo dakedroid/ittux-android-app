@@ -46,7 +46,7 @@
 
 
 
-        <receiver android:name=".Utils.FacebookBroadcastReceiver">
+        <receiver android:name=".Utils.mFacebookBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.facebook.platform.AppCallResultBroadcast" />
             </intent-filter>

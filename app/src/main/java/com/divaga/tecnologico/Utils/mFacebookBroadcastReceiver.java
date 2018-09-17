@@ -22,13 +22,12 @@ package com.divaga.tecnologico.Utils;
 
 import android.os.Bundle;
 import android.util.Log;
-import com.facebook.FacebookBroadcastReceiver;
 
 /**
- * This is a simple example to demonstrate how an app could extend FacebookBroadcastReceiver to handle
+ * This is a simple example to demonstrate how an app could extend mFacebookBroadcastReceiver to handle
  * notifications that long-running operations such as photo uploads have finished.
  */
-public class FacebookBroadcastReceiver extends com.facebook.FacebookBroadcastReceiver {
+public class mFacebookBroadcastReceiver extends com.facebook.FacebookBroadcastReceiver {
 
     @Override
     protected void onSuccessfulAppCall(String appCallId, String action, Bundle extras) {
