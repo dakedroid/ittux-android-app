@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="3dp"
@@ -9,107 +10,117 @@
     android:padding="8dp">
     <!-- Header Layout-->
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/item_publicacion_share_layout"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/publicacion_item_user_photo"
-                android:layout_width="@dimen/publicacion_item_user_photo_w"
-                android:layout_height="@dimen/publicacion_item_user_photo_h"
-                android:layout_gravity="center_vertical"
-                android:scaleType="centerCrop"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/publicacion_item_user_photo"
+                    android:layout_width="@dimen/publicacion_item_user_photo_w"
+                    android:layout_height="@dimen/publicacion_item_user_photo_h"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginStart="@dimen/publicacion_item_keylines"
+                    android:layout_marginTop="@dimen/publicacion_item_keylines"
+                    android:contentDescription="@string/publicacion_item_content_description_username_picture"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pizza_monster">
+
+                </ImageView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/publicacion_item_md_keylines"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/publicacion_item_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginStart="@dimen/publicacion_item_keylines"
+                        android:text="@string/publicacion_item_username"
+                        android:textSize="@dimen/publicacion_item_username_size"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/publicacion_item_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/publicacion_item_keylines"
+                        android:text="@string/publicacion_item_date"
+                        android:textSize="@dimen/publicacion_item_date">
+
+                    </TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/publicacion_item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/publicacion_item_keylines"
                 android:layout_marginStart="@dimen/publicacion_item_keylines"
                 android:layout_marginTop="@dimen/publicacion_item_keylines"
-                android:layout_marginBottom="6dp"
-                android:contentDescription="@string/publicacion_item_content_description_username_picture"
+                android:text="@string/publicacion_item_body_text"
+                android:textSize="@dimen/publicacion_item_body_size">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/publicacion_item_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/publicacion_item_keylines"
+                android:contentDescription="@string/publicacion_item_content_description_imagen_body"
+                android:maxHeight="380dp"
+                android:minHeight="200dp"
                 android:src="@drawable/pizza_monster">
 
             </ImageView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/publicacion_item_md_keylines"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/publicacion_item_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginStart="@dimen/publicacion_item_keylines"
-                    android:text="@string/publicacion_item_username"
-                    android:textSize="@dimen/publicacion_item_username_size"
-                    android:textStyle="bold">
-
-                </TextView>
-
-                <TextView
-                    android:id="@+id/publicacion_item_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/publicacion_item_keylines"
-                    android:text="@string/publicacion_item_date"
-                    android:textSize="@dimen/publicacion_item_date">
-
-                </TextView>
-
-            </LinearLayout>
-
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/publicacion_item_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/publicacion_item_keylines"
-            android:layout_marginStart="@dimen/publicacion_item_keylines"
-            android:layout_marginTop="@dimen/publicacion_item_keylines"
-            android:text="@string/publicacion_item_body_text"
-            android:textSize="@dimen/publicacion_item_body_size">
-
-        </TextView>
-
-        <ImageView
-            android:id="@+id/publicacion_item_photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="200dp"
-            android:maxHeight="380dp"
-            android:layout_marginTop="@dimen/publicacion_item_keylines"
-            android:contentDescription="@string/publicacion_item_content_description_imagen_body"
-            android:src="@drawable/pizza_monster">
-
-        </ImageView>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/publicacion_item_keylines"
+            android:layout_marginEnd="@dimen/publicacion_item_md_keylines"
             android:layout_marginStart="@dimen/publicacion_item_keylines"
-            android:layout_marginEnd="@dimen/publicacion_item_md_keylines">
+            android:layout_marginTop="@dimen/publicacion_item_keylines">
 
 
-            <ImageView
+            <Button
                 android:id="@+id/publicacion_item_img_likes"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="@dimen/publicacion_item_keylines"
                 android:layout_marginBottom="@dimen/publicacion_item_keylines"
-                android:tint="#2196F3"
-                android:src="@drawable/baseline_favorite_border_black_36"
-                android:contentDescription="@string/publicacion_item_content_description_imagen_likes">
+                android:layout_marginTop="@dimen/publicacion_item_keylines"
+                android:contentDescription="@string/publicacion_item_content_description_imagen_likes"
+                android:background="@drawable/baseline_favorite_border_black_36"
+                android:backgroundTint="#2196F3"
+                tools:targetApi="lollipop">
 
-            </ImageView>
+            </Button>
 
             <TextView
                 android:id="@+id/publicacion_item_num_likes"
@@ -123,17 +134,19 @@
 
             </TextView>
 
-            <ImageView
+            <Button
+                android:id="@+id/postPhotoButton"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:layout_marginTop="@dimen/publicacion_item_keylines"
-                android:layout_marginBottom="@dimen/publicacion_item_keylines"
                 android:layout_alignParentEnd="true"
-                android:tint="#4CAF50"
-                android:src="@drawable/baseline_share_black_36"
-                android:contentDescription="@string/publicacion_item_content_description_share">
+                android:layout_marginBottom="@dimen/publicacion_item_keylines"
+                android:layout_marginTop="@dimen/publicacion_item_keylines"
+                android:background="@drawable/baseline_share_black_36"
+                android:backgroundTint="#4CAF50"
+                android:contentDescription="@string/publicacion_item_content_description_share"
+                tools:targetApi="lollipop">
 
-            </ImageView>
+            </Button>
 
             <TextView
                 android:id="@+id/publicacion_item_num_comments"
@@ -141,8 +154,8 @@
                 android:layout_height="wrap_content"
 
                 android:layout_centerInParent="true"
-                android:layout_marginTop="@dimen/publicacion_item_keylines"
                 android:layout_marginBottom="@dimen/publicacion_item_keylines"
+                android:layout_marginTop="@dimen/publicacion_item_keylines"
                 android:text="Comentar"
                 android:textSize="20sp">
 
@@ -152,15 +165,16 @@
                 android:id="@+id/publicacion_item_img_comments"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_toEndOf="@id/publicacion_item_num_comments"
-                android:tint="#2196F3"
-                android:layout_marginTop="@dimen/publicacion_item_keylines"
                 android:layout_marginBottom="@dimen/publicacion_item_keylines"
+                android:layout_marginTop="@dimen/publicacion_item_keylines"
+                android:layout_toEndOf="@id/publicacion_item_num_comments"
+                android:contentDescription="@string/publicacion_item_content_description_num_comments"
                 android:src="@drawable/baseline_textsms_black_18"
-                android:contentDescription="@string/publicacion_item_content_description_num_comments">
+                android:tint="#2196F3">
 
             </ImageView>
 
         </RelativeLayout>
+
     </LinearLayout>
 </android.support.v7.widget.CardView>
