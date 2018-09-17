@@ -1,11 +1,14 @@
 package com.divaga.tecnologico.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,22 +23,28 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 /**
  * RecyclerView adapter for a list of Publicaciones
  */
 public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.ViewHolder> {
 
+    private Context mContext;
+
 
     public interface OnPublicacionSelectedListener {
         void OnPublicacionSelected(DocumentSnapshot publicacion);
+        void OnShareSelected(String title, LinearLayout photo);
+        void OnLikeSelected(DocumentSnapshot publicacion);
     }
 
 
     private OnPublicacionSelectedListener mListener;
 
-    public PublicacionAdapter(Query query, OnPublicacionSelectedListener mListener) {
+    public PublicacionAdapter(Query query, OnPublicacionSelectedListener mListener, Context context) {
         super(query);
         this.mListener = mListener;
+        this.mContext = context;
     }
 
     @NonNull
@@ -47,7 +56,7 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(getSnapshot(position), mListener);
+        holder.bind(getSnapshot(position), mListener, mContext);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -73,10 +82,18 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
         @BindView(R.id.publicacion_item_num_comments)
         TextView numCommentsView;
 
+        @BindView(R.id.postPhotoButton)
+        Button postPhotoButton;
+
+        @BindView(R.id.publicacion_item_img_likes)
+        Button likeButton;
+
+        @BindView(R.id.item_publicacion_share_layout)
+        LinearLayout ll;
+
 
         private static final SimpleDateFormat FORMAT  = new SimpleDateFormat(
                 "MM/dd/yyyy", Locale.US);
-
 
 
         public ViewHolder(View itemView) {
@@ -84,9 +101,10 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(final DocumentSnapshot snapshot, final OnPublicacionSelectedListener listener) {
+        public void bind(final DocumentSnapshot snapshot, final OnPublicacionSelectedListener listener, final Context context) {
 
-            Publicacion publicacion = snapshot.toObject(Publicacion.class);
+
+            final Publicacion publicacion = snapshot.toObject(Publicacion.class);
             // Resources resources = itemView.getResources();
 
             // Load image
@@ -108,6 +126,27 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
             numLikesView.setText(String.valueOf(publicacion.getNumLikes()));
            // numCommentsView.setText(String.valueOf(publicacion.getNumComments()));
 
+
+
+            likeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        listener.OnLikeSelected(snapshot);
+
+                        likeButton.setBackground(context.getResources().getDrawable(R.drawable.favorite_like));
+                    }
+                }
+            });
+
+
+            postPhotoButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    if (listener != null) {
+                        listener.OnShareSelected(descriptionView.getText().toString(),ll);
+                    }
+                }
+            });
 
             // Click listener
             itemView.setOnClickListener(new View.OnClickListener() {

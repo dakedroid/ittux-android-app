@@ -86,6 +86,7 @@ public class DocumentoAdapter extends FirestoreAdapter<DocumentoAdapter.ViewHold
 
             int resourceType = 0;
 
+            assert documento != null;
             if(documento.getType().equals(".pdf")){
                 resourceType = R.drawable.pdf;
             }else if (documento.getType().equals(".doc") || documento.getType().equals(".docx") ){

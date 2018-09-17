@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/item_comentario_imagen"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/facebook_avatar" />
-
-    <RelativeLayout
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingRight="16dp"
+        android:paddingTop="16dp">
 
 
             <TextView
@@ -28,11 +16,11 @@
                 style="@style/AppTheme.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/greySecondary"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:maxWidth="120dp"
                 android:layout_alignParentLeft="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:maxWidth="120dp"
+                android:textColor="@color/greySecondary"
                 tools:text="John Doe" />
 
             <TextView
@@ -48,8 +36,8 @@
                 style="@style/AppTheme.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/greySecondary"
                 android:layout_toRightOf="@+id/comentario_item_divider"
+                android:textColor="@color/greySecondary"
                 tools:text="9/27/2017" />
 
             <TextView
@@ -67,12 +55,11 @@
                 style="@style/AppTheme.Divider"
                 android:layout_below="@id/comentario_item_text"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp" />
 
 
     </RelativeLayout>
 
-</LinearLayout>
 
 
 
