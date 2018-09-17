@@ -12,6 +12,9 @@
     <dimen name="publicacion_item_date">16sp</dimen>
     <dimen name="publicacion_item_body_size">16sp</dimen>
 
+    <dimen name="convocatoria_item_keylines">8dp</dimen>
+    <dimen name="convocatoria_item_md_keylines">16dp</dimen>
+
     <!-- storage-->
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
@@ -20,4 +23,6 @@
     <dimen name="standard_field_width">160dp</dimen>
     <dimen name="margin_1">8dp</dimen>
     <dimen name="margin_2">16dp</dimen>
+    <dimen name="aviso_item_body_size">24sp</dimen>
+
 </resources>
