@@ -87,19 +87,37 @@ public class DocumentoAdapter extends FirestoreAdapter<DocumentoAdapter.ViewHold
             int resourceType = 0;
 
             assert documento != null;
-            if(documento.getType().equals(".pdf")){
-                resourceType = R.drawable.pdf;
-            }else if (documento.getType().equals(".doc") || documento.getType().equals(".docx") ){
-                resourceType = R.drawable.word;
-            }else if (documento.getType().equals(".ppt") || documento.getType().equals(".pptx") ){
-                resourceType = R.drawable.powerpoint;
-            }else if (documento.getType().equals(".xls") || documento.getType().equals(".xlsx") ){
-                resourceType = R.drawable.excel;
-            }else if (documento.getType().equals(".jpg") || documento.getType().equals(".png")  || documento.getType().equals(".jpeg")){
-                resourceType = R.drawable.picture;
-            }else if (documento.getType().equals(".zip")){
-                resourceType = R.drawable.zip;
+
+
+            if(documento.getType() != null){
+
+                switch (documento.getType()) {
+                    case ".pdf":
+                        resourceType = R.drawable.pdf;
+                        break;
+                    case ".doc":
+                    case ".docx":
+                        resourceType = R.drawable.word;
+                        break;
+                    case ".ppt":
+                    case ".pptx":
+                        resourceType = R.drawable.powerpoint;
+                        break;
+                    case ".xls":
+                    case ".xlsx":
+                        resourceType = R.drawable.excel;
+                        break;
+                    case ".jpg":
+                    case ".png":
+                    case ".jpeg":
+                        resourceType = R.drawable.picture;
+                        break;
+                    case ".zip":
+                        resourceType = R.drawable.zip;
+                        break;
+                }
             }
+
 
             Resources resources = context.getResources();
 

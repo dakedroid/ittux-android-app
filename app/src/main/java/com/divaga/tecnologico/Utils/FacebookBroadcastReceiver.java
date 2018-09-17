@@ -28,7 +28,7 @@ import com.facebook.FacebookBroadcastReceiver;
  * This is a simple example to demonstrate how an app could extend FacebookBroadcastReceiver to handle
  * notifications that long-running operations such as photo uploads have finished.
  */
-public class HelloFacebookBroadcastReceiver extends FacebookBroadcastReceiver {
+public class FacebookBroadcastReceiver extends com.facebook.FacebookBroadcastReceiver {
 
     @Override
     protected void onSuccessfulAppCall(String appCallId, String action, Bundle extras) {
