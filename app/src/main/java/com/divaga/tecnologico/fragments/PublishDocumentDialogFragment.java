@@ -39,8 +39,6 @@ public class PublishDocumentDialogFragment extends DialogFragment{
     private static final int PICK_IMAGE_REQUEST = 234;
 
 
-
-
     private Uri filePath;
 
     private String extension;
@@ -64,8 +62,6 @@ public class PublishDocumentDialogFragment extends DialogFragment{
 
     @BindView(R.id.progress)
     ProgressBar pbar;
-
-
 
     @BindView(R.id.dialog_documento_filename)
     TextView txtFileName;
@@ -134,6 +130,7 @@ public class PublishDocumentDialogFragment extends DialogFragment{
                 if (extension.equals(".pdf")){
                     id = R.drawable.pdf;
                 }else if (extension.equals(".docx") || extension.equals(".doc") ){
+
                     id = R.drawable.word;
 
                 }else if (extension.equals(".ppt") || extension.equals(".pptx") ){

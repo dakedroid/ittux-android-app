@@ -1,15 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@+id/dashboar_linearlayout_group"
-    android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/publicacion_item_keylines"
     tools:context=".InicioActivity">
+
+    <android.support.v7.widget.CardView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="3dp"
+        android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+        android:background="#ffffff">
+
+
+        <RelativeLayout
+            android:id="@+id/activity_inicio_publish"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:onClick="onClick">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/publicacion_item_keylines"
+                android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+                android:background="@android:color/transparent"
+                android:hint="Subir Documento"
+                android:textColorHint="#ced5db"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/publicacion_item_md_keylines"
+                android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+                android:text="Subir"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/publicacion_item_md_keylines"
+                android:tint="#d9d9d9" />
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
 
 
     <android.support.v7.widget.RecyclerView
@@ -20,6 +65,6 @@
         tools:listitem="@layout/item_publicacion" />
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
 
 

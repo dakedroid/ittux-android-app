@@ -59,7 +59,6 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
 
     private  Documento mDocumento;
 
-
     private PublishDocumentDialogFragment mPublishDialog;
 
     private static final int LIMIT = 50;

@@ -46,6 +46,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -92,8 +94,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_register);
 
         // Views
-       // mStatusTextView = findViewById(R.id.status);
-       // mDetailTextView = findViewById(R.id.detail);
+        // mStatusTextView = findViewById(R.id.status);
+        // mDetailTextView = findViewById(R.id.detail);
         mEmailField = findViewById(R.id.field_email);
         mPasswordField = findViewById(R.id.field_password);
         mNameField = findViewById(R.id.field_name);
@@ -112,9 +114,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
         circleImageView = findViewById(R.id.register_profile_pic);
         circleImageView.setOnClickListener(this);
-       // findViewById(R.id.email_create_account_button).setOnClickListener(this);
-       // findViewById(R.id.sign_out_button).setOnClickListener(this);
-       // findViewById(R.id.verify_email_button).setOnClickListener(this);
+        // findViewById(R.id.email_create_account_button).setOnClickListener(this);
+        // findViewById(R.id.sign_out_button).setOnClickListener(this);
+        // findViewById(R.id.verify_email_button).setOnClickListener(this);
 
         // [START config_signin]
 
@@ -205,8 +207,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             mPermissions = permisos;
 
                             if (mFileUri != null) {
-                                uploadFromUri(mFileUri);
-                                writeUserWithImage();
+
+                                uploadImage(mFileUri);
+                              //  uploadFromUri(mFileUri);
+                                //writeUserWithImage();
                             }else {
 
                                 writeUserWithDefaultImage();
@@ -223,7 +227,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         }
 
                         // [START_EXCLUDE]
-                        hideProgressDialog();
+
                         // [END_EXCLUDE]
                     }
                 });
@@ -250,9 +254,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 if (task.isSuccessful()) {
                     updateUIEmail(user);
 
-                    } else {
+                } else {
                     Log.w("InicioActivity", "write batch failed.", task.getException());
-                    }
+                }
             }
         });
 
@@ -260,7 +264,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     private void writeUserWithImage(){
 
-        storageRef.child("photos").child(mFileUri.getLastPathSegment()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageRef.child("photos").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
 
@@ -280,6 +284,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         if (task.isSuccessful()) {
 
                             updateUIEmail(user);
+
+                            hideProgressDialog();
 
                         } else {
                             Log.w("InicioActivity", "write batch failed.", task.getException());
@@ -339,21 +345,20 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             startActivity(new Intent(RegisterActivity.this, DasboardActivity.class));
 
 
-           // findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
-           // findViewById(R.id.email_password_fields).setVisibility(View.GONE);
-           // findViewById(R.id.signed_in_buttons).setVisibility(View.VISIBLE);
+            // findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
+            // findViewById(R.id.email_password_fields).setVisibility(View.GONE);
+            // findViewById(R.id.signed_in_buttons).setVisibility(View.VISIBLE);
 
 //            findViewById(R.id.verify_email_button).setEnabled(!user.isEmailVerified());
         } else {
             //mStatusTextView.setText(R.string.signed_out);
             //mDetailTextView.setText(null);
 
-          //  findViewById(R.id.email_password_buttons).setVisibility(View.VISIBLE);
-          //  findViewById(R.id.email_password_fields).setVisibility(View.VISIBLE);
-          //  findViewById(R.id.signed_in_buttons).setVisibility(View.GONE);
+            //  findViewById(R.id.email_password_buttons).setVisibility(View.VISIBLE);
+            //  findViewById(R.id.email_password_fields).setVisibility(View.VISIBLE);
+            //  findViewById(R.id.signed_in_buttons).setVisibility(View.GONE);
         }
     }
-
 
     // image methods
 
@@ -390,6 +395,42 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 Toast.makeText(this, "Taking picture failed.", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void uploadImage( Uri filePath){
+
+        final String mUID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+
+        final StorageReference fileRef = storageRef.child("photos").child(mUID);
+
+
+        if(filePath != null){
+
+
+            fileRef.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            writeUserWithImage();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            hideProgressDialog();
+                            Toast.makeText(RegisterActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                            // mProgressDialog.setMessage("Uploaded ");
+                        }
+                    });
+        }
+
     }
 
     private void uploadFromUri(Uri fileUri) {

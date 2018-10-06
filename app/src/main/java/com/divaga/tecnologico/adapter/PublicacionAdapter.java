@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.divaga.tecnologico.R;
+import com.divaga.tecnologico.Utils.GlideApp;
 import com.divaga.tecnologico.model.Publicacion;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
@@ -22,6 +23,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -62,7 +64,7 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.publicacion_item_user_photo)
-        ImageView userPhotoView;
+        CircleImageView userPhotoView;
 
         @BindView(R.id.publicacion_item_username)
         TextView usernameView;
@@ -101,6 +103,11 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
             ButterKnife.bind(this, itemView);
         }
 
+        public void setImage(){
+
+
+        }
+
         public void bind(final DocumentSnapshot snapshot, final OnPublicacionSelectedListener listener, final Context context) {
 
 
@@ -111,6 +118,11 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
             Glide.with(userPhotoView.getContext())
                     .load(publicacion.getUser_photo())
                     .into(userPhotoView);
+            
+            if (publicacion.getTimestamp() != null) {
+
+                dateView.setText(FORMAT.format(publicacion.getTimestamp()));
+            }
 
             usernameView.setText(publicacion.getUsername());
             descriptionView.setText(publicacion.getDescription());
@@ -119,14 +131,12 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
                 dateView.setText(FORMAT.format(publicacion.getTimestamp()));
             }
 
-            Glide.with(photoView.getContext())
+
+            GlideApp.with(context)
                     .load(publicacion.getPhoto())
                     .into(photoView);
 
             numLikesView.setText(String.valueOf(publicacion.getNumLikes()));
-           // numCommentsView.setText(String.valueOf(publicacion.getNumComments()));
-
-
 
             likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -138,7 +148,6 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
                     }
                 }
             });
-
 
             postPhotoButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {

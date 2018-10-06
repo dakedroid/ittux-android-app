@@ -1,8 +1,10 @@
 package com.divaga.tecnologico;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -15,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.divaga.tecnologico.adapter.PublicacionAdapter;
+import com.divaga.tecnologico.fragments.PublishPublicacionDialogFragment;
 import com.divaga.tecnologico.model.Publicacion;
+import com.divaga.tecnologico.model.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -30,34 +34,51 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Transaction;
 import com.google.firebase.firestore.WriteBatch;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InicioActivity extends FragmentActivity implements PublicacionAdapter.OnPublicacionSelectedListener{
+public class InicioActivity extends FragmentActivity implements PublicacionAdapter.OnPublicacionSelectedListener, View.OnClickListener, PublishPublicacionDialogFragment.PublicacionListener{
 
+
+    private static final int LIMIT = 50;
+
+    private static String userPhotoUrl;
+    private static String userName;
 
     private FirebaseFirestore mFirestore;
     private Query mQuery;
     private DocumentReference mPublicacionRef;
+    private StorageReference storageRef;
 
-    String post_id;
+    public ProgressDialog mProgressDialog;
+
+    private String post_id;
 
     private PublicacionAdapter mAdapter;
-
-    private static final int LIMIT = 50;
+    private PublishPublicacionDialogFragment mPublishDialog;
 
     private LinearLayout photo;
+
 
     private static final String PERMISSION = "publish_actions";
     private final String PENDING_ACTION_BUNDLE_KEY = "com.divaga.tecnologico:PendingAction";
@@ -83,7 +104,7 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
 
         // Get ${LIMIT} restaurants
         mQuery = mFirestore.collection("publicaciones")
-                //.orderBy("numComents", Query.Direction.DESCENDING)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
                 .limit(LIMIT);
 
         // RecyclerView
@@ -113,7 +134,7 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
 
         mPublicacionesRecycler.setNestedScrollingEnabled(false);
 
-
+        storageRef = FirebaseStorage.getInstance().getReference();
 
         // facebook stuff
 
@@ -135,6 +156,7 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
                 SharePhotoContent.class);
 
 
+        mPublishDialog = new PublishPublicacionDialogFragment();
         // writeOnServer();
     }
 
@@ -221,73 +243,7 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
                 });
     }
 
-    private Task<Void> addLike(final DocumentReference publicacionRf) {
-        // Create reference for new comentario, for use inside the transaction
 
-        // In a transaction, add the new comentarioand update the aggregate totals
-        return mFirestore.runTransaction(new Transaction.Function<Void>() {
-            @Override
-            public Void apply(Transaction transaction) throws FirebaseFirestoreException {
-
-                Publicacion publicacion = transaction.get(publicacionRf).toObject(Publicacion.class);
-
-                // Compute new number of comentarios
-
-                int newNumLikes= publicacion.getNumLikes() + 1;
-
-                //Toast.makeText(InicioActivity.this, "task", Toast.LENGTH_SHORT).show();
-
-                // Set new restaurant info
-                publicacion.setNumLikes(newNumLikes);
-
-                // Commit to Firestore
-                transaction.set(publicacionRf, publicacion);
-
-                return null;
-            }
-        });
-    }
-
-    public void writeOnServer() {
-
-        WriteBatch batch = mFirestore.batch();
-
-        DocumentReference restRef = mFirestore.collection("publicaciones").document();
-
-
-        Publicacion publicacion = new Publicacion();
-
-        publicacion.setUsername("Depto. de comunicacion y difusion");
-        publicacion.setUser_photo("https://www.ittux.edu.mx/sites/default/files/styles/medium/public/tec-transp.png?itok=v_2qwjVj");
-
-        publicacion.setDescription("Bienvenidos al tecnologico de tuxtepec.");
-        publicacion.setPhoto("https://www.nvinoticias.com/sites/default/files/styles/node/public/notas/2017/04/07/image_67_copia.jpg?itok=g7jJ57PP");
-
-        //publicacion.setTimecreated(1203123);
-        publicacion.setNumLikes(0);
-        publicacion.setNumComments(0);
-
-        // Add restaurant
-        batch.set(restRef, publicacion);
-
-        /*
-        // Add  to subcollection
-        for (Comentario comentarios : comentarioss) {
-            batch.set(restRef.collection("comentarios").document(), comentario);
-        }
-        */
-
-        batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Log.d("InicioActivity", "Write batch succeeded.");
-                } else {
-                    Log.w("InicioActivity", "write batch failed.", task.getException());
-                }
-            }
-        });
-    }
 
     // Facebook Stuff
 
@@ -315,12 +271,6 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
                 postPhoto();
                 break;
         }
-    }
-
-    private enum PendingAction {
-        NONE,
-        POST_PHOTO,
-        POST_STATUS_UPDATE
     }
 
     public Bitmap getBitmap(LinearLayout layout){
@@ -356,6 +306,39 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
                 && AccessToken.getCurrentAccessToken().getPermissions().contains("publish_actions");
     }
 
+    private enum PendingAction {
+        NONE,
+        POST_PHOTO,
+        POST_STATUS_UPDATE
+    }
+
+    private Task<Void> addLike(final DocumentReference publicacionRf) {
+        // Create reference for new comentario, for use inside the transaction
+
+        // In a transaction, add the new comentarioand update the aggregate totals
+        return mFirestore.runTransaction(new Transaction.Function<Void>() {
+            @Override
+            public Void apply(Transaction transaction) throws FirebaseFirestoreException {
+
+                Publicacion publicacion = transaction.get(publicacionRf).toObject(Publicacion.class);
+
+                // Compute new number of comentarios
+
+                int newNumLikes= publicacion.getNumLikes() + 1;
+
+                //Toast.makeText(InicioActivity.this, "task", Toast.LENGTH_SHORT).show();
+
+                // Set new restaurant info
+                publicacion.setNumLikes(newNumLikes);
+
+                // Commit to Firestore
+                transaction.set(publicacionRf, publicacion);
+
+                return null;
+            }
+        });
+    }
+
     private FacebookCallback<Sharer.Result> shareCallback = new FacebookCallback<Sharer.Result>() {
         @Override
         public void onCancel() {
@@ -389,5 +372,173 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
                     .show();
         }
     };
+
+
+    // Listeners Stuff
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+
+        if (id == R.id.activity_inicio_publish){
+            mPublishDialog.show(getSupportFragmentManager(), PublishPublicacionDialogFragment.TAG);
+        }
+    }
+
+    @Override
+    public void onSubirPublicacion(final Publicacion publicacion, Uri filePath) {
+
+
+        getUser(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+
+        uploadImage(publicacion, filePath);
+
+    }
+
+    private void getUser(final String Uid) {
+
+        final ArrayList<User> mArrayList = new ArrayList<>();
+
+        Log.i("PRUEBITA",Uid);
+
+        Query mQuery = mFirestore.collection("usuarios")
+                .whereEqualTo("userId", Uid)
+                .limit(1);
+
+
+        mQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot documentSnapshot) {
+                if (documentSnapshot.isEmpty()) {
+                    Log.d("PRUEBITA", "onSuccess: LIST EMPTY");
+                    return;
+                } else {
+                    // Convert the whole Query Snapshot to a list
+                    // of objects directly! No need to fetch each
+                    // document.
+
+                    List<User> types = documentSnapshot.toObjects(User.class);
+
+                    mArrayList.addAll(types);
+
+                    userPhotoUrl = mArrayList.get(0).getPhoto();
+
+                    userName = mArrayList.get(0).getUserName();
+
+                }
+            }
+
+        });
+
+
+
+    }
+
+    public void uploadImage(final Publicacion publicacion, Uri filePath){
+
+        final String mUID = UUID.randomUUID().toString();
+
+        final StorageReference fileRef = storageRef.child("publicaciones").child(mUID);
+
+
+        if(filePath != null){
+
+            showProgressDialog();
+
+            fileRef.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            hideProgressDialog();
+                            Toast.makeText(InicioActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+
+                            writeOnServer(publicacion, mUID);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            hideProgressDialog();
+                            Toast.makeText(InicioActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                            // mProgressDialog.setMessage("Uploaded ");
+                        }
+                    });
+        }
+
+    }
+
+    public void writeOnServer(final Publicacion publicacion, final String mUID) {
+
+
+        storageRef.child("publicaciones").child(mUID).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(final Uri uri) {
+
+
+                WriteBatch batch = mFirestore.batch();
+
+                DocumentReference restRef = mFirestore.collection("publicaciones").document();
+
+                publicacion.setUsername(userName);
+
+                publicacion.setPhoto(uri.toString());
+
+                publicacion.setUser_photo(userPhotoUrl);
+
+                // Add restaurant
+                batch.set(restRef, publicacion);
+
+                batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+
+                            hideProgressDialog();
+
+                            Log.d("InicioActivity", "Write batch succeeded.");
+
+                        } else {
+
+                            Log.w("InicioActivity", "write batch failed.", task.getException());
+
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+
+                Log.i("PATHGET", "fallo");
+            }
+        });
+
+    }
+
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+        mProgressDialog.setCanceledOnTouchOutside(false);
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
 
 }
