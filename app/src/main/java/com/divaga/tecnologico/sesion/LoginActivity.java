@@ -26,10 +26,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.divaga.tecnologico.DasboardActivity;
-import com.divaga.tecnologico.InicioActivity;
 import com.divaga.tecnologico.R;
 import com.divaga.tecnologico.customfonts.MyEditText;
-import com.divaga.tecnologico.customfonts.MyTextView;
+import com.divaga.tecnologico.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -42,6 +41,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.WriteBatch;
 
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.
@@ -160,12 +162,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            assert user != null;
+                            writeUser(user, user.getDisplayName(), "0", user.getPhotoUrl().toString());
                             updateUIGoogle(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
                             updateUIGoogle(null);
+
                         }
 
                         // [START_EXCLUDE]
@@ -222,10 +227,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             Log.i("LOGIN_GOOGLE", user.getUid());
 
 
+
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
 //            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
 
             startActivity(new Intent(LoginActivity.this, DasboardActivity.class));
+
+            finish();
         } else {
             //mStatusTextView.setText(R.string.signed_out);
             //mDetailTextView.setText(null);
@@ -233,6 +241,39 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             //findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         }
+    }
+
+    private void writeUser(FirebaseUser user, String mName, String mPermissions, String url) {
+
+
+        User mUser = new User(user, mName, mPermissions, url);
+
+        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
+
+        WriteBatch batch = mFirestore.batch();
+
+        DocumentReference restRef = mFirestore.collection("usuarios").document();
+
+        batch.set(restRef, mUser);
+
+        batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+
+
+                    hideProgressDialog();
+
+                } else {
+
+                    Log.w("InicioActivity", "write batch failed.", task.getException());
+
+                }
+            }
+
+        });
+
+
     }
 
     @Override
@@ -413,6 +454,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             startActivity(new Intent(LoginActivity.this, DasboardActivity.class));
 
 
+            finish();
            // findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
            // findViewById(R.id.email_password_fields).setVisibility(View.GONE);
            // findViewById(R.id.signed_in_buttons).setVisibility(View.VISIBLE);
@@ -427,4 +469,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
           //  findViewById(R.id.signed_in_buttons).setVisibility(View.GONE);
         }
     }
+
+
 }

@@ -34,17 +34,15 @@
 
         </RelativeLayout>
 
-        <android.support.design.widget.FloatingActionButton
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/dashboar_photo"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_alignBottom="@+id/dashboar_head"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="-28dp"
-
-
-            app:backgroundTint="@color/cardview_shadow_start_color"
-            app:srcCompat="@mipmap/tecnologico" />
+            android:src="@mipmap/tecnologico"
+            app:backgroundTint="@color/cardview_shadow_start_color" />
 
         <com.divaga.tecnologico.customfonts.MyTextView
             android:id="@+id/dashboar_user"
