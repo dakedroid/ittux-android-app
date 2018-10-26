@@ -7,16 +7,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="@dimen/publicacion_item_keylines"
+    android:layout_marginTop="@dimen/keylines"
     tools:context=".InicioActivity">
 
     <android.support.v7.widget.CardView
 
+        android:id="@+id/publish_dialog_posts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="3dp"
-        android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+        android:layout_marginTop="@dimen/md_keylines"
         android:background="#ffffff">
 
 
@@ -31,8 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/publicacion_item_keylines"
-                android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+                android:layout_marginStart="@dimen/keylines"
+                android:layout_marginTop="@dimen/md_keylines"
                 android:background="@android:color/transparent"
                 android:hint="Subir Documento"
                 android:textColorHint="#ced5db"
@@ -43,11 +44,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/publicacion_item_md_keylines"
-                android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+                android:layout_marginEnd="@dimen/md_keylines"
+                android:layout_marginTop="@dimen/md_keylines"
                 android:text="Subir"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/publicacion_item_md_keylines"
+                android:textSize="@dimen/md_keylines"
                 android:tint="#d9d9d9" />
 
 

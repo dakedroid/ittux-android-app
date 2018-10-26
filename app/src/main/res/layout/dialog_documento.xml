@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_marginBottom="@dimen/publicacion_item_keylines">
+    android:layout_marginBottom="@dimen/keylines">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,12 +20,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="@dimen/publicacion_item_keylines">
+            android:paddingTop="@dimen/keylines">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/publicacion_item_md_keylines">
+                android:layout_marginBottom="@dimen/md_keylines">
 
 
 
@@ -48,8 +48,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/publicacion_item_md_keylines"
-                android:layout_marginStart="@dimen/publicacion_item_md_keylines"
+                android:layout_marginEnd="@dimen/md_keylines"
+                android:layout_marginStart="@dimen/md_keylines"
                 android:text="Escribe una descripcion del documento" />
 
             <EditText
@@ -61,7 +61,7 @@
                 android:gravity="top"
                 android:hint="Escribe algo ..."
                 android:minHeight="80dp"
-                android:padding="@dimen/publicacion_item_md_keylines"
+                android:padding="@dimen/md_keylines"
                 android:textColor="@color/colorAccent" />
 
 
@@ -69,9 +69,9 @@
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginBottom="@dimen/publicacion_item_md_keylines"
-                android:layout_marginEnd="@dimen/publicacion_item_md_keylines"
-                android:layout_marginStart="@dimen/publicacion_item_md_keylines"
+                android:layout_marginBottom="@dimen/md_keylines"
+                android:layout_marginEnd="@dimen/md_keylines"
+                android:layout_marginStart="@dimen/md_keylines"
                 android:background="@drawable/square"
                 android:hint="Inicio"
                 tools:listitem="@layout/browser_actions_context_menu_row">
@@ -95,7 +95,7 @@
                     android:id="@+id/iv_post_display"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/publicacion_item_keylines"
+                    android:layout_marginBottom="@dimen/keylines"
                     android:adjustViewBounds="true"
                     android:maxHeight="140dp"
                     android:visibility="gone"
@@ -127,7 +127,7 @@
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/publicacion_item_keylines"
+                    android:layout_marginTop="@dimen/keylines"
                     android:src="@drawable/camera"
                     android:tint="@color/colorAccent" />
 
@@ -138,11 +138,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="@dimen/publicacion_item_keylines"
+                    android:layout_marginBottom="@dimen/keylines"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="@dimen/publicacion_item_keylines"
-                    android:layout_marginStart="@dimen/publicacion_item_md_keylines"
-                    android:layout_marginTop="@dimen/publicacion_item_keylines"
+                    android:layout_marginEnd="@dimen/keylines"
+                    android:layout_marginStart="@dimen/md_keylines"
+                    android:layout_marginTop="@dimen/keylines"
                     android:background="@drawable/square"
                     android:padding="8dp"
                     android:text="Publicar"

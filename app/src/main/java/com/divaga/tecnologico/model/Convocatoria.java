@@ -12,12 +12,12 @@ import java.util.Date;
  */
 public class Convocatoria {
 
+
+    private String postId;
     private String username;
     private String user_photo;
     private String description;
     private @ServerTimestamp Date datepublic;
-
-
 
     private String type;
     private String path;
@@ -25,6 +25,7 @@ public class Convocatoria {
 
     public Convocatoria() {
     }
+
     public Convocatoria(FirebaseUser user, String description, String username, String user_photo, Date datepublic, String category, String type, String path, Date datelimit) {
         this.username = user.getDisplayName();
         if (TextUtils.isEmpty(this.username)) {
@@ -37,6 +38,14 @@ public class Convocatoria {
         this.type = type;
         this.path = path;
         this.datelimit = datelimit;
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 
     public String getDescription() {

@@ -21,12 +21,12 @@
 
             <ImageView
                 android:id="@+id/avisos_item_user_photo"
-                android:layout_width="@dimen/publicacion_item_user_photo_w"
-                android:layout_height="@dimen/publicacion_item_user_photo_h"
+                android:layout_width="@dimen/item_user_photo_w"
+                android:layout_height="@dimen/item_user_photo_h"
                 android:layout_gravity="center_vertical"
                 android:layout_marginBottom="6dp"
-                android:layout_marginStart="@dimen/publicacion_item_keylines"
-                android:layout_marginTop="@dimen/publicacion_item_keylines"
+                android:layout_marginStart="@dimen/keylines"
+                android:layout_marginTop="@dimen/keylines"
                 android:contentDescription="@string/publicacion_item_content_description_username_picture"
                 android:scaleType="centerCrop"
                 android:src="@drawable/facebook_avatar">
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/publicacion_item_md_keylines"
+                android:layout_marginStart="@dimen/md_keylines"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
-                    android:layout_marginStart="@dimen/publicacion_item_keylines"
+                    android:layout_marginStart="@dimen/keylines"
                     android:text="@string/convocatoria_item_username"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/publicacion_item_username_size"
@@ -58,7 +58,7 @@
                     android:id="@+id/avisos_item_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/publicacion_item_keylines"
+                    android:layout_marginStart="@dimen/keylines"
                     android:text="@string/convocatoria_item_date"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/publicacion_item_date">
@@ -73,9 +73,9 @@
             android:id="@+id/avisos_item_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/publicacion_item_keylines"
-            android:layout_marginStart="@dimen/publicacion_item_keylines"
-            android:layout_marginTop="@dimen/publicacion_item_keylines"
+            android:layout_marginEnd="@dimen/keylines"
+            android:layout_marginStart="@dimen/keylines"
+            android:layout_marginTop="@dimen/keylines"
             android:autoLink="none"
             android:text="@string/aviso_item_description"
             android:textColor="@color/colorWhite"
@@ -86,9 +86,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/publicacion_item_md_keylines"
-            android:layout_marginStart="@dimen/publicacion_item_keylines"
-            android:layout_marginTop="@dimen/publicacion_item_keylines">
+            android:layout_marginEnd="@dimen/md_keylines"
+            android:layout_marginStart="@dimen/keylines"
+            android:layout_marginTop="@dimen/keylines">
 
 
             <ImageView
@@ -96,8 +96,8 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginBottom="@dimen/publicacion_item_keylines"
-                android:layout_marginTop="@dimen/publicacion_item_keylines"
+                android:layout_marginBottom="@dimen/keylines"
+                android:layout_marginTop="@dimen/keylines"
                 android:contentDescription="@string/publicacion_item_content_description_share"
                 android:src="@drawable/baseline_share_black_36"
                 android:tint="#4CAF50">

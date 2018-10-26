@@ -15,7 +15,7 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/publicacion_item_md_keylines"
+            android:layout_marginBottom="@dimen/md_keylines"
             android:layout_gravity="center_horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -33,7 +33,7 @@
             android:id="@+id/head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/publicacion_item_md_keylines"
+            android:layout_marginBottom="@dimen/md_keylines"
             android:text="Seleccionar imagen"
             android:textColor="#4c565f"
             android:textSize="24sp"
@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+            android:layout_marginTop="@dimen/md_keylines"
             android:gravity="center_horizontal"
             android:text="Volver a Iniciar Sesion"
             android:textColor="#3367d6"
@@ -166,7 +166,7 @@
             android:layout_marginBottom="3dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+            android:layout_marginTop="@dimen/md_keylines"
             android:background="@drawable/rect1"
             android:gravity="center"
             android:onClick="onClick"

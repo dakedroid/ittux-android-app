@@ -20,12 +20,12 @@
 
             <ImageView
                 android:id="@+id/convocatoria_item_user_photo"
-                android:layout_width="@dimen/publicacion_item_user_photo_w"
-                android:layout_height="@dimen/publicacion_item_user_photo_h"
+                android:layout_width="@dimen/item_user_photo_w"
+                android:layout_height="@dimen/item_user_photo_h"
                 android:layout_gravity="center_vertical"
                 android:layout_marginBottom="6dp"
-                android:layout_marginStart="@dimen/publicacion_item_keylines"
-                android:layout_marginTop="@dimen/publicacion_item_keylines"
+                android:layout_marginStart="@dimen/keylines"
+                android:layout_marginTop="@dimen/keylines"
                 android:contentDescription="@string/publicacion_item_content_description_username_picture"
                 android:scaleType="centerCrop"
                 android:src="@drawable/facebook_avatar">
@@ -35,7 +35,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/publicacion_item_md_keylines"
+                android:layout_marginStart="@dimen/md_keylines"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
-                    android:layout_marginStart="@dimen/publicacion_item_keylines"
+                    android:layout_marginStart="@dimen/keylines"
                     android:text="@string/convocatoria_item_username"
                     android:textSize="@dimen/publicacion_item_username_size"
                     android:textStyle="bold">
@@ -56,7 +56,7 @@
                     android:id="@+id/convocatoria_item_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/publicacion_item_keylines"
+                    android:layout_marginStart="@dimen/keylines"
                     android:text="@string/convocatoria_item_date"
                     android:textSize="@dimen/publicacion_item_date">
 
@@ -70,9 +70,9 @@
             android:id="@+id/convocatoria_item_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/publicacion_item_keylines"
-            android:layout_marginStart="@dimen/publicacion_item_keylines"
-            android:layout_marginTop="@dimen/publicacion_item_keylines"
+            android:layout_marginEnd="@dimen/keylines"
+            android:layout_marginStart="@dimen/keylines"
+            android:layout_marginTop="@dimen/keylines"
             android:text="@string/convocatoria_item_description"
             android:textSize="@dimen/publicacion_item_body_size">
 
@@ -82,7 +82,7 @@
             android:id="@+id/convocatoria_item_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/publicacion_item_keylines"
+            android:layout_marginTop="@dimen/keylines"
             android:contentDescription="@string/publicacion_item_content_description_imagen_body"
             android:maxHeight="380dp"
             android:minHeight="200dp"
@@ -93,9 +93,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/publicacion_item_keylines"
-            android:layout_marginStart="@dimen/publicacion_item_keylines"
-            android:layout_marginEnd="@dimen/publicacion_item_md_keylines">
+            android:layout_marginTop="@dimen/keylines"
+            android:layout_marginStart="@dimen/keylines"
+            android:layout_marginEnd="@dimen/md_keylines">
 
 
             <ImageView
@@ -103,8 +103,8 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="@dimen/publicacion_item_keylines"
-                android:layout_marginBottom="@dimen/publicacion_item_keylines"
+                android:layout_marginTop="@dimen/keylines"
+                android:layout_marginBottom="@dimen/keylines"
 
                 android:src="@drawable/calendar"
                 android:contentDescription="@string/publicacion_item_content_description_imagen_likes">
@@ -115,8 +115,8 @@
                 android:id="@+id/convocatoria_item_date_limit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/publicacion_item_keylines"
-                android:layout_marginTop="@dimen/publicacion_item_md_keylines"
+                android:layout_marginBottom="@dimen/keylines"
+                android:layout_marginTop="@dimen/md_keylines"
                 android:layout_toEndOf="@id/publicacion_item_img_likes"
                 android:text="@string/convocatoria_item_date_l"
                 android:textSize="16sp">
@@ -127,8 +127,8 @@
                 android:id="@+id/convocatoria_item_btn_download"
                 android:layout_width="110dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="@dimen/publicacion_item_keylines"
-                android:layout_marginBottom="@dimen/publicacion_item_keylines"
+                android:layout_marginTop="@dimen/keylines"
+                android:layout_marginBottom="@dimen/keylines"
                 android:layout_alignParentEnd="true"
                 android:tint="#4CAF50"
                 android:background="@drawable/rect1"

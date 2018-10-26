@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -64,6 +65,7 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
 
     private static String userPhotoUrl;
     private static String userName;
+    private static String userPerssions;
 
     private FirebaseFirestore mFirestore;
     private Query mQuery;
@@ -78,7 +80,7 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
     private PublishPublicacionDialogFragment mPublishDialog;
 
     private LinearLayout photo;
-
+    private CardView publishDialogLayout;
 
     private static final String PERMISSION = "publish_actions";
     private final String PENDING_ACTION_BUNDLE_KEY = "com.divaga.tecnologico:PendingAction";
@@ -157,6 +159,14 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
 
 
         mPublishDialog = new PublishPublicacionDialogFragment();
+
+
+        getUser(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+
+
+        publishDialogLayout = findViewById(R.id.publish_dialog_posts);
+
+
         // writeOnServer();
     }
 
@@ -388,9 +398,6 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
     @Override
     public void onSubirPublicacion(final Publicacion publicacion, Uri filePath) {
 
-
-        getUser(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
-
         uploadImage(publicacion, filePath);
 
     }
@@ -425,14 +432,26 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
 
                     userName = mArrayList.get(0).getUserName();
 
+                    userPerssions = mArrayList.get(0).getPermisos();
+
+
+                    if (userPerssions.contains("1")) {
+
+                        publishDialogLayout.setVisibility(View.VISIBLE);
+
+                    }else {
+
+                        publishDialogLayout.setVisibility(View.GONE);
+
+                    }
+
                 }
             }
 
         });
 
-
-
     }
+
 
     public void uploadImage(final Publicacion publicacion, Uri filePath){
 
@@ -522,7 +541,6 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
         });
 
     }
-
 
     public void showProgressDialog() {
         if (mProgressDialog == null) {

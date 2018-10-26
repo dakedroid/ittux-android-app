@@ -31,10 +31,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DasboardActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseAuth mAuth;
-    private GoogleSignInClient mGoogleSignInClient;
 
-    private FirebaseAuth firebaseAuth;
+    GoogleSignInClient mGoogleSignInClient;
+
+    FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
 
     MyTextView txvName;
@@ -43,7 +43,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
 
     CircleImageView photoUser;
 
-    private FirebaseFirestore mFirestore;
+    FirebaseFirestore mFirestore;
 
     String userEmail = "";
     String userName = "";
@@ -76,8 +76,6 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
         txvEmail = findViewById(R.id.dashboar_email);
         txvName = findViewById(R.id.dashboar_user);
         photoUser = findViewById(R.id.dashboar_photo);
-
-        mAuth = FirebaseAuth.getInstance();
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -207,7 +205,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
 
     private void signOut() {
         // Firebase sign out
-        mAuth.signOut();
+        firebaseAuth.signOut();
 
         // Google sign out
         mGoogleSignInClient.signOut().addOnCompleteListener(this,

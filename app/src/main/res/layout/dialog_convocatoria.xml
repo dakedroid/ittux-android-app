@@ -29,7 +29,7 @@
 
 
                 <TextView
-                    android:id="@+id/dialog_publicacion_cerrar"
+                    android:id="@+id/dialog_convocatoria_cerrar"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
@@ -49,11 +49,76 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/md_keylines"
                 android:layout_marginStart="@dimen/md_keylines"
-                android:text="Escribe algo" />
+                android:text="Pon la fecha limite de la convocatoria" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/keylines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <EditText
+                    android:id="@+id/dialog_convocatoria_edtx_fecha"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="date"
+                    android:hint="@string/formato_fecha"
+                    android:layout_marginStart="8dp"/>
+
+                <ImageButton
+                    android:id="@+id/dialog_convocatoria_btn_fecha"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_event_white_24dp"
+                    android:layout_marginEnd="@dimen/keylines"
+                    android:layout_marginStart="@dimen/keylines"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+
+            <!--
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/md_keylines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <EditText
+                    android:id="@+id/et_mostrar_hora_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="time"
+                    android:layout_weight="1"
+                    android:hint="@string/formato_hora"
+                    android:layout_marginStart="8dp"/>
+
+
+                <ImageButton
+                    android:id="@+id/ib_obtener_hora"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/keylines"
+                    android:layout_marginStart="@dimen/keylines"
+                    android:src="@drawable/ic_access_time_white_24dp"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+-->
+
 
             <EditText
 
-                android:id="@+id/dialog_publicacion_edtx"
+                android:id="@+id/dialog_convocatoria_edtx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -62,6 +127,9 @@
                 android:minHeight="80dp"
                 android:padding="@dimen/md_keylines"
                 android:textColor="@color/colorAccent" />
+
+
+
 
 
             <RelativeLayout
@@ -110,7 +178,7 @@
 
 
                 <TextView
-                    android:id="@+id/dialog_publicacion_btn_publicar"
+                    android:id="@+id/dialog_convocatoria_btn_publicar"
                     style="@style/Base.TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
