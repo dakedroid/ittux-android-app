@@ -1,5 +1,6 @@
 package com.divaga.tecnologico;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -58,7 +60,7 @@ import java.util.UUID;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InicioActivity extends FragmentActivity implements PublicacionAdapter.OnPublicacionSelectedListener, View.OnClickListener, PublishPublicacionDialogFragment.PublicacionListener{
+public class InicioActivity extends AppCompatActivity implements PublicacionAdapter.OnPublicacionSelectedListener, View.OnClickListener, PublishPublicacionDialogFragment.PublicacionListener{
 
 
     private static final int LIMIT = 50;
@@ -98,6 +100,8 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
         setContentView(R.layout.activity_inicio);
 
         ButterKnife.bind(this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FirebaseFirestore.setLoggingEnabled(true);
 
@@ -190,6 +194,13 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
     }
 
     @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
@@ -215,42 +226,6 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
         this.photo.setBackgroundColor(getResources().getColor(R.color.colorWhite));
 
         onClickPostPhoto();
-    }
-
-    @Override
-    public void OnLikeSelected(DocumentSnapshot publicacion) {
-
-
-        post_id = publicacion.getId();
-
-        Toast.makeText(this, "Id consegido", Toast.LENGTH_SHORT).show();
-
-        mPublicacionRef = mFirestore.collection("publicaciones").document(post_id);
-
-        addLike(mPublicacionRef)
-                .addOnSuccessListener(this, new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Detailactivity", "Comentario agregado");
-
-                        Toast.makeText(InicioActivity.this, "agregado", Toast.LENGTH_SHORT).show();
-
-                        // Hide keyboard and scroll to top
-                        //hideKeyboard();
-                       // mComentariosRecycler.smoothScrollToPosition(0);
-                    }
-                })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("DetailActivity", "Error con el Comentadio", e);
-
-                        // Show failure message and hide keyboard
-                       // hideKeyboard();
-                        Snackbar.make(findViewById(android.R.id.content), "Fallo en cargar el comentario",
-                                Snackbar.LENGTH_SHORT).show();
-                    }
-                });
     }
 
 
@@ -322,32 +297,6 @@ public class InicioActivity extends FragmentActivity implements PublicacionAdapt
         POST_STATUS_UPDATE
     }
 
-    private Task<Void> addLike(final DocumentReference publicacionRf) {
-        // Create reference for new comentario, for use inside the transaction
-
-        // In a transaction, add the new comentarioand update the aggregate totals
-        return mFirestore.runTransaction(new Transaction.Function<Void>() {
-            @Override
-            public Void apply(Transaction transaction) throws FirebaseFirestoreException {
-
-                Publicacion publicacion = transaction.get(publicacionRf).toObject(Publicacion.class);
-
-                // Compute new number of comentarios
-
-                int newNumLikes= publicacion.getNumLikes() + 1;
-
-                //Toast.makeText(InicioActivity.this, "task", Toast.LENGTH_SHORT).show();
-
-                // Set new restaurant info
-                publicacion.setNumLikes(newNumLikes);
-
-                // Commit to Firestore
-                transaction.set(publicacionRf, publicacion);
-
-                return null;
-            }
-        });
-    }
 
     private FacebookCallback<Sharer.Result> shareCallback = new FacebookCallback<Sharer.Result>() {
         @Override

@@ -16,7 +16,6 @@ public class Publicacion {
     private String username;
     private String user_photo;
     private int numComments;
-    private int numLikes;
     private @ServerTimestamp Date timestamp;
 
     //  private @ServerTimestamp Date timestamp;
@@ -32,7 +31,6 @@ public class Publicacion {
         this.username = username;
         this.user_photo = user_photo;
         this.numComments = numComments;
-        this.numLikes = numLikes;
 
     }
 
@@ -75,14 +73,6 @@ public class Publicacion {
 
     public void setNumComments(int numComments) {
         this.numComments = numComments;
-    }
-
-    public int getNumLikes() {
-        return numLikes;
-    }
-
-    public void setNumLikes(int numLikes) {
-        this.numLikes = numLikes;
     }
 
     public Date getTimestamp() {

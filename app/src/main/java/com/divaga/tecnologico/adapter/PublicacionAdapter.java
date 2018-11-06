@@ -37,7 +37,6 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
     public interface OnPublicacionSelectedListener {
         void OnPublicacionSelected(DocumentSnapshot publicacion);
         void OnShareSelected(String title, LinearLayout photo);
-        void OnLikeSelected(DocumentSnapshot publicacion);
     }
 
 
@@ -78,8 +77,6 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
         @BindView(R.id.publicacion_item_photo)
         ImageView photoView;
 
-        @BindView(R.id.publicacion_item_num_likes)
-        TextView numLikesView;
 
         @BindView(R.id.publicacion_item_num_comments)
         TextView numCommentsView;
@@ -87,8 +84,6 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
         @BindView(R.id.postPhotoButton)
         Button postPhotoButton;
 
-        @BindView(R.id.publicacion_item_img_likes)
-        Button likeButton;
 
         @BindView(R.id.item_publicacion_share_layout)
         LinearLayout ll;
@@ -136,18 +131,6 @@ public class PublicacionAdapter extends FirestoreAdapter<PublicacionAdapter.View
                     .load(publicacion.getPhoto())
                     .into(photoView);
 
-            numLikesView.setText(String.valueOf(publicacion.getNumLikes()));
-
-            likeButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (listener != null) {
-                        listener.OnLikeSelected(snapshot);
-
-                        likeButton.setBackground(context.getResources().getDrawable(R.drawable.favorite_like));
-                    }
-                }
-            });
 
             postPhotoButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {

@@ -26,7 +26,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.divaga.tecnologico.DasboardActivity;
+import com.divaga.tecnologico.DashboardActivityDepreceated;
 import com.divaga.tecnologico.R;
 import com.divaga.tecnologico.customfonts.MyEditText;
 import com.divaga.tecnologico.model.User;
@@ -342,7 +342,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             Log.i("LOGIN EMAIL", user.getEmail());
             Log.i("LOGIN EMAIL", user.getUid());
 
-            startActivity(new Intent(RegisterActivity.this, DasboardActivity.class));
+            startActivity(new Intent(RegisterActivity.this, DashboardActivityDepreceated.class));
 
 
             // findViewById(R.id.email_password_buttons).setVisibility(View.GONE);

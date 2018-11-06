@@ -25,7 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.divaga.tecnologico.DasboardActivity;
+import com.divaga.tecnologico.DashboardActivity;
 import com.divaga.tecnologico.R;
 import com.divaga.tecnologico.customfonts.MyEditText;
 import com.divaga.tecnologico.model.User;
@@ -231,7 +231,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
 //            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
 
-            startActivity(new Intent(LoginActivity.this, DasboardActivity.class));
+            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
 
             finish();
         } else {
@@ -451,7 +451,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             Log.i("LOGIN EMAIL", user.getEmail());
             Log.i("LOGIN EMAIL", user.getUid());
 
-            startActivity(new Intent(LoginActivity.this, DasboardActivity.class));
+            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
 
 
             finish();

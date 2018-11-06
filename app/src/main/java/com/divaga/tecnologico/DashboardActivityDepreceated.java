@@ -29,7 +29,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class DasboardActivity extends AppCompatActivity implements View.OnClickListener {
+public class DashboardActivityDepreceated extends AppCompatActivity implements View.OnClickListener {
 
 
     GoogleSignInClient mGoogleSignInClient;
@@ -53,7 +53,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboard_depreceated);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -63,7 +63,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user == null) {
-                    Intent intent = new Intent(DasboardActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(DashboardActivityDepreceated.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -173,14 +173,14 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
 
         int i = view.getId();
         if (i == R.id.dashboar_btn_1) {
-           startActivity(new Intent(DasboardActivity.this, InicioActivity.class));
+           startActivity(new Intent(DashboardActivityDepreceated.this, InicioActivity.class));
         }
         if (i == R.id.dashboar_btn_2) {
-            startActivity(new Intent(DasboardActivity.this, ConvocatoriaActivity.class));
+            startActivity(new Intent(DashboardActivityDepreceated.this, ConvocatoriaActivity.class));
 
         }
         if (i == R.id.dashboar_btn_3) {
-            startActivity(new Intent(DasboardActivity.this, AvisosActivity.class));
+            startActivity(new Intent(DashboardActivityDepreceated.this, AvisosActivity.class));
 
         }
         if (i == R.id.dashboar_btn_4) {
@@ -190,7 +190,7 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
             signOut();
         }
         if (i == R.id.dashboar_btn_6) {
-            startActivity(new Intent(DasboardActivity.this, DocumentosActivity.class));
+            startActivity(new Intent(DashboardActivityDepreceated.this, DocumentosActivity.class));
         }
         if (i == R.id.dashboar_btn_7) {
             signOut();
@@ -216,6 +216,6 @@ public class DasboardActivity extends AppCompatActivity implements View.OnClickL
                     }
                 });
 
-        startActivity(new Intent(DasboardActivity.this, LoginActivity.class));
+        startActivity(new Intent(DashboardActivityDepreceated.this, LoginActivity.class));
     }
 }

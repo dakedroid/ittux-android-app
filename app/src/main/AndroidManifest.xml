@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.divaga.tecnologico">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -13,38 +13,22 @@
         android:roundIcon="@mipmap/tecnologico"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-
-        <activity android:name=".InicioActivity">
-
-        </activity>
+        <activity android:name=".InicioActivity"></activity>
         <activity android:name=".DetailActivity" />
         <activity
             android:name=".sesion.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".DocumentosActivity">
-
-        </activity>
+        <activity android:name=".DocumentosActivity"></activity>
         <activity
             android:name=".sesion.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        </activity>
-
-        <activity android:name=".DasboardActivity">
-
-
-        </activity>
-
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".DashboardActivityDepreceated"></activity>
 
         <receiver android:name=".Utils.mFacebookBroadcastReceiver">
             <intent-filter>
@@ -52,18 +36,15 @@
             </intent-filter>
         </receiver>
 
-
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"
             tools:replace="android:value" />
 
-
-        <provider android:authorities="com.facebook.app.FacebookContentProvider2044861825545194"
+        <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
-
+            android:authorities="com.facebook.app.FacebookContentProvider2044861825545194"
+            android:exported="true" />
 
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -71,10 +52,7 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             tools:replace="android:theme" />
-
-
-        <activity
-            android:name="com.facebook.CustomTabActivity">
+        <activity android:name="com.facebook.CustomTabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -84,16 +62,12 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".AvisosActivity">
-
-        </activity>
-
-        <activity android:name=".ConvocatoriaActivity">
-
-        </activity>
-
-
+        <activity android:name=".AvisosActivity"></activity>
+        <activity android:name=".ConvocatoriaActivity"></activity>
+        <activity
+            android:name=".DashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".PermisosActivity"></activity>
     </application>
 
 </manifest>

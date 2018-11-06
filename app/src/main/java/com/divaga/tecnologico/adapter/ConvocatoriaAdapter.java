@@ -115,6 +115,9 @@ public class ConvocatoriaAdapter extends FirestoreAdapter<ConvocatoriaAdapter.Vi
             description.setText(convocatoria.getDescription());
 
 
+
+            dateLimit.setText("Fecha limite: " + convocatoria.getDatelimit());
+
             if (convocatoria.getDatepublic() != null) {
                 datepublic.setText(FORMAT.format(convocatoria.getDatepublic()));
             }
@@ -122,10 +125,6 @@ public class ConvocatoriaAdapter extends FirestoreAdapter<ConvocatoriaAdapter.Vi
             Glide.with(photoView.getContext())
                     .load(resourceType)
                     .into(photoView);
-            if (convocatoria.getDatelimit() != null) {
-                dateLimit.setText(FORMAT.format(convocatoria.getDatelimit()));
-            }
-
 
 
                 // Click listener

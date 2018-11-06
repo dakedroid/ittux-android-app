@@ -54,7 +54,7 @@ public class PublishConvocatoriaDialogFragment extends DialogFragment{
     private String name;
 
 
-    private Date finalDate;
+    private String finalDate;
 
 
     // date variables
@@ -240,10 +240,7 @@ public class PublishConvocatoriaDialogFragment extends DialogFragment{
                 String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
 
 
-                finalDate = new Date();
-
-                finalDate = parseDate(diaFormateado + BARRA + mesFormateado + BARRA + year);
-
+                finalDate = diaFormateado + BARRA + mesFormateado + BARRA + year;
 
                 etFecha.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
 

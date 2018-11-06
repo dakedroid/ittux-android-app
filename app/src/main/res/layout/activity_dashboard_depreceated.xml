@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboar_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        tools:context="com.divaga.tecnologico.DetailActivity">
+
+        <RelativeLayout
+            android:id="@+id/dashboar_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/dashboar_head_imagen"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/encabezado"
+                android:contentDescription="@string/dashboar_head_imagen_description" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@drawable/encabezado" />
+
+        </RelativeLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/dashboar_photo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignBottom="@+id/dashboar_head"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="-28dp"
+            android:src="@mipmap/tecnologico"
+            app:backgroundTint="@color/cardview_shadow_start_color" />
+
+        <com.divaga.tecnologico.customfonts.MyTextView
+            android:id="@+id/dashboar_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="200dp"
+            android:text="@string/dashboar_user"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <com.divaga.tecnologico.customfonts.MyTextView
+            android:id="@+id/dashboar_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dashboar_user"
+            android:text="@string/dashboar_email"
+            android:textAlignment="center"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:id="@+id/dashboar_linearlayout_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="250dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="ExtraText">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/dashboar_btn_1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="onClick"
+                        android:padding="15dp"
+                        android:src="@drawable/fui_ic_phone_white_24dp" />
+
+                    <com.divaga.tecnologico.customfonts.MyTextView
+                        android:id="@+id/dashboar_text_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="@string/dashboard_txt_1"
+                        android:textAlignment="center" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/dashboar_btn_4"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="onClick"
+                        android:padding="15dp"
+                        android:src="@drawable/fui_ic_twitter_bird_white_24dp" />
+
+                    <com.divaga.tecnologico.customfonts.MyTextView
+                        android:id="@+id/dashboar_text_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="@string/dashboard_txt_4"
+                        android:textAlignment="center" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/dashboar_btn_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="onClick"
+                        android:padding="15dp"
+                        android:src="@drawable/fui_ic_mail_white_24dp" />
+
+                    <com.divaga.tecnologico.customfonts.MyTextView
+                        android:id="@+id/dashboar_text_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="@string/dashboard_txt_7"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/dashboar_btn_2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="onClick"
+                        android:padding="15dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/fui_ic_twitter_bird_white_24dp" />
+
+                    <com.divaga.tecnologico.customfonts.MyTextView
+                        android:id="@+id/dashboar_text_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="@string/dashboard_txt_2"
+                        android:textAlignment="center" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/dashboar_btn_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="onClick"
+                        android:padding="15dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/fui_ic_phone_white_24dp" />
+
+                    <com.divaga.tecnologico.customfonts.MyTextView
+                        android:id="@+id/dashboar_text_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="@string/dashboard_txt_5"
+                        android:textAlignment="center" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/dashboar_btn_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="onClick"
+                        android:padding="15dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/fui_ic_twitter_bird_white_24dp" />
+
+                    <com.divaga.tecnologico.customfonts.MyTextView
+                        android:id="@+id/dashboar_text_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="@string/dashboard_txt_8"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/dashboar_btn_3"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="onClick"
+                        android:padding="15dp"
+                        android:src="@drawable/fui_ic_mail_white_24dp" />
+
+                    <com.divaga.tecnologico.customfonts.MyTextView
+                        android:id="@+id/dashboar_text_dashboar_text_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="@string/dashboard_txt_3"
+                        android:textAlignment="center" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/dashboar_btn_6"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="onClick"
+                        android:padding="15dp"
+                        android:src="@drawable/fui_ic_github_white_24dp" />
+
+                    <com.divaga.tecnologico.customfonts.MyTextView
+                        android:id="@+id/dashboar_text_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="@string/dashboard_txt_6"
+                        android:textAlignment="center" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/dashboar_btn_9"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="onClick"
+                        android:padding="15dp"
+                        android:src="@drawable/fui_ic_mail_white_24dp" />
+
+                    <com.divaga.tecnologico.customfonts.MyTextView
+                        android:id="@+id/dashboar_text_9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:text="@string/dashboard_txt_9"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

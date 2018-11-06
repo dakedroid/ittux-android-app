@@ -72,8 +72,10 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documentos);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
+
 
         FirebaseFirestore.setLoggingEnabled(true);
 
@@ -152,6 +154,12 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
         if (mAdapter != null) {
             mAdapter.stopListening();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     public void writeOnServer(final Documento documento) {

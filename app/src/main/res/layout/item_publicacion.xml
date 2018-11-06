@@ -109,32 +109,6 @@
 
 
             <Button
-                android:id="@+id/publicacion_item_img_likes"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="@dimen/keylines"
-                android:layout_marginTop="@dimen/keylines"
-                android:contentDescription="@string/publicacion_item_content_description_imagen_likes"
-                android:background="@drawable/baseline_favorite_border_black_36"
-                android:backgroundTint="#2196F3"
-                tools:targetApi="lollipop">
-
-            </Button>
-
-            <TextView
-                android:id="@+id/publicacion_item_num_likes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/keylines"
-                android:layout_marginTop="@dimen/md_keylines"
-                android:layout_toEndOf="@id/publicacion_item_img_likes"
-                android:text="@string/publicacion_item_num_likes"
-                android:textSize="16sp">
-
-            </TextView>
-
-            <Button
                 android:id="@+id/postPhotoButton"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
@@ -152,8 +126,7 @@
                 android:id="@+id/publicacion_item_num_comments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
                 android:layout_marginBottom="@dimen/keylines"
                 android:layout_marginTop="@dimen/keylines"
                 android:text="Comentar"

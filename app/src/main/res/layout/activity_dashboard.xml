@@ -1,298 +1,581 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dashboar_scroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nested_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        tools:context="com.divaga.tecnologico.DetailActivity">
-
-        <RelativeLayout
-            android:id="@+id/dashboar_head"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/dashboar_head_imagen"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:scaleType="centerCrop"
-                tools:src="@drawable/encabezado"
-                android:contentDescription="@string/dashboar_head_imagen_description" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:background="@drawable/encabezado" />
-
-        </RelativeLayout>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/dashboar_photo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_alignBottom="@+id/dashboar_head"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="-28dp"
-            android:src="@mipmap/tecnologico"
-            app:backgroundTint="@color/cardview_shadow_start_color" />
-
-        <com.divaga.tecnologico.customfonts.MyTextView
-            android:id="@+id/dashboar_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="200dp"
-            android:text="@string/dashboar_user"
-            android:textAlignment="center"
-            android:textStyle="bold" />
-
-        <com.divaga.tecnologico.customfonts.MyTextView
-            android:id="@+id/dashboar_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dashboar_user"
-            android:text="@string/dashboar_email"
-            android:textAlignment="center"
-            android:textStyle="italic" />
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        android:scrollingCache="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:id="@+id/dashboar_linearlayout_group"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="250dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="2dp">
 
-                android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/dashboar_head_imagen"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:background="@color/grey_40"
+                        android:foreground="@color/overlay_dark_30"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/encabezado" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_mlarge">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/dashboar_photo"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginEnd="@dimen/spacing_large"
+                            android:layout_marginRight="@dimen/spacing_large"
+                            android:src="@drawable/facebook_avatar" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/dashboar_user"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kevin David Molina Gómez"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textColor="@android:color/white" />
+
+                            <TextView
+                                android:id="@+id/dashboar_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Kevin David Molina Gómez"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_medium"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="@dimen/spacing_mlarge"
+                                    android:layout_height="@dimen/spacing_mlarge"
+                                    android:layout_marginEnd="@dimen/spacing_medium"
+                                    android:layout_marginRight="@dimen/spacing_medium"
+                                    android:tint="@color/grey_10"
+                                    app:srcCompat="@drawable/ic_location" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Instituto Tecnoclogico de Tuxtepec"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                    android:textColor="@color/grey_10"
+                                    tools:text="Instituto tecnologico de Tuxtepec" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/dashboar_btn_1"
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:layout_marginTop="@dimen/md_keylines"
+                android:layout_marginRight="@dimen/spacing_middle"
+                android:layout_marginBottom="@dimen/spacing_middle"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:background="@color/grey_40"
+                        android:foreground="@drawable/gradient_1"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_large"
+                        android:text="Avisos"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@android:color/white" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_large">
+
+                        <ImageView
+                            android:layout_width="@dimen/spacing_middle"
+                            android:layout_height="@dimen/spacing_middle"
+                            android:layout_marginEnd="@dimen/spacing_medium"
+                            android:layout_marginRight="@dimen/spacing_medium"
+                            android:tint="@color/grey_10"
+                            app:srcCompat="@drawable/ic_schedule" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="45 minutes"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            android:textColor="@color/grey_10" />
+
+                        <ImageView
+                            android:layout_width="@dimen/spacing_middle"
+                            android:layout_height="@dimen/spacing_middle"
+                            android:layout_marginLeft="@dimen/spacing_medium"
+                            android:layout_marginRight="@dimen/spacing_medium"
+                            android:tint="@color/grey_10"
+                            app:srcCompat="@drawable/ic_photo_library" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="36"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            android:textColor="@color/grey_10" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                tools:ignore="ExtraText">
+                android:padding="@dimen/spacing_medium"
+                android:visibility="visible">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/dashboar_btn_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="2dp">
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/dashboar_btn_1"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:onClick="onClick"
-                        android:padding="15dp"
-                        android:src="@drawable/fui_ic_phone_white_24dp" />
-
-                    <com.divaga.tecnologico.customfonts.MyTextView
-                        android:id="@+id/dashboar_text_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/dashboard_txt_1"
-                        android:textAlignment="center" />
-
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/dashboar_btn_4"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:onClick="onClick"
-                        android:padding="15dp"
-                        android:src="@drawable/fui_ic_twitter_bird_white_24dp" />
-
-                    <com.divaga.tecnologico.customfonts.MyTextView
-                        android:id="@+id/dashboar_text_4"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/dashboard_txt_4"
-                        android:textAlignment="center" />
+                        android:orientation="vertical">
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/dashboar_btn_7"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:onClick="onClick"
-                        android:padding="15dp"
-                        android:src="@drawable/fui_ic_mail_white_24dp" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:background="@color/grey_40"
+                            android:foreground="@drawable/gradient_2"
+                            android:scaleType="centerCrop" />
 
-                    <com.divaga.tecnologico.customfonts.MyTextView
-                        android:id="@+id/dashboar_text_7"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/dashboard_txt_7"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/spacing_large"
+                            android:text="Publicacones"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/white" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/spacing_large">
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/dashboar_btn_2"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:onClick="onClick"
-                        android:padding="15dp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/fui_ic_twitter_bird_white_24dp" />
+                            <ImageView
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="@dimen/spacing_middle"
+                                android:layout_marginEnd="@dimen/spacing_medium"
+                                android:layout_marginRight="@dimen/spacing_medium"
+                                android:tint="@color/grey_10"
+                                app:srcCompat="@drawable/ic_schedule" />
 
-                    <com.divaga.tecnologico.customfonts.MyTextView
-                        android:id="@+id/dashboar_text_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/dashboard_txt_2"
-                        android:textAlignment="center" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="23 minutes"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/grey_10" />
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/dashboar_btn_5"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:onClick="onClick"
-                        android:padding="15dp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/fui_ic_phone_white_24dp" />
+                            <ImageView
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="@dimen/spacing_middle"
+                                android:layout_marginLeft="@dimen/spacing_medium"
+                                android:layout_marginRight="@dimen/spacing_medium"
+                                android:tint="@color/grey_10"
+                                app:srcCompat="@drawable/ic_photo_library" />
 
-                    <com.divaga.tecnologico.customfonts.MyTextView
-                        android:id="@+id/dashboar_text_5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/dashboard_txt_5"
-                        android:textAlignment="center" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="15"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/grey_10" />
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/dashboar_btn_8"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:onClick="onClick"
-                        android:padding="15dp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/fui_ic_twitter_bird_white_24dp" />
+                        </LinearLayout>
 
-                    <com.divaga.tecnologico.customfonts.MyTextView
-                        android:id="@+id/dashboar_text_8"
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/dashboar_btn_3"
+                    android:onClick="onClick"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="2dp">
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/dashboard_txt_8"
-                        android:textAlignment="center" />
+                        android:orientation="vertical">
 
-                </LinearLayout>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:background="@color/grey_40"
+                            android:foreground="@drawable/gradient_3"
+                            android:scaleType="centerCrop" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/spacing_large"
+                            android:text="Convocatorias"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/white" />
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/dashboar_btn_3"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:onClick="onClick"
-                        android:padding="15dp"
-                        android:src="@drawable/fui_ic_mail_white_24dp" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/spacing_large">
 
-                    <com.divaga.tecnologico.customfonts.MyTextView
-                        android:id="@+id/dashboar_text_dashboar_text_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/dashboard_txt_3"
-                        android:textAlignment="center" />
+                            <ImageView
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="@dimen/spacing_middle"
+                                android:layout_marginEnd="@dimen/spacing_medium"
+                                android:layout_marginRight="@dimen/spacing_medium"
+                                android:tint="@color/grey_10"
+                                app:srcCompat="@drawable/ic_schedule" />
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/dashboar_btn_6"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:onClick="onClick"
-                        android:padding="15dp"
-                        android:src="@drawable/fui_ic_github_white_24dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="18 minutes"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/grey_10" />
 
-                    <com.divaga.tecnologico.customfonts.MyTextView
-                        android:id="@+id/dashboar_text_6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/dashboard_txt_6"
-                        android:textAlignment="center" />
+                            <ImageView
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="@dimen/spacing_middle"
+                                android:layout_marginLeft="@dimen/spacing_medium"
+                                android:layout_marginRight="@dimen/spacing_medium"
+                                android:tint="@color/grey_10"
+                                app:srcCompat="@drawable/ic_photo_library" />
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/dashboar_btn_9"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:onClick="onClick"
-                        android:padding="15dp"
-                        android:src="@drawable/fui_ic_mail_white_24dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="50"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/grey_10" />
 
-                    <com.divaga.tecnologico.customfonts.MyTextView
-                        android:id="@+id/dashboar_text_9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/dashboard_txt_9"
-                        android:textAlignment="center" />
+                        </LinearLayout>
 
-                </LinearLayout>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium"
+                android:visibility="visible">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/dashboar_btn_4"
+                    android:onClick="onClick"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="2dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:background="@color/grey_40"
+                            android:foreground="@drawable/gradient_4"
+                            android:scaleType="centerCrop" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/spacing_large"
+                            android:text="Descarga de Documentos"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/white" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="@dimen/spacing_middle"
+                                android:layout_marginEnd="@dimen/spacing_medium"
+                                android:layout_marginRight="@dimen/spacing_medium"
+                                android:tint="@color/grey_10"
+                                app:srcCompat="@drawable/ic_schedule" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="23 minutes"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/grey_10" />
+
+                            <ImageView
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="@dimen/spacing_middle"
+                                android:layout_marginLeft="@dimen/spacing_medium"
+                                android:layout_marginRight="@dimen/spacing_medium"
+                                android:tint="@color/grey_10"
+                                app:srcCompat="@drawable/ic_photo_library" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="15"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/grey_10" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/dashboar_btn_5"
+                    android:onClick="onClick"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="2dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:background="@color/grey_40"
+                            android:foreground="@drawable/gradient_5"
+                            android:scaleType="centerCrop" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/spacing_large"
+                            android:text="Salir"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/white" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="@dimen/spacing_middle"
+                                android:layout_marginEnd="@dimen/spacing_medium"
+                                android:layout_marginRight="@dimen/spacing_medium"
+                                android:tint="@color/grey_10"
+                                app:srcCompat="@drawable/ic_schedule" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="18 minutes"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/grey_10" />
+
+                            <ImageView
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="@dimen/spacing_middle"
+                                android:layout_marginLeft="@dimen/spacing_medium"
+                                android:layout_marginRight="@dimen/spacing_medium"
+                                android:tint="@color/grey_10"
+                                app:srcCompat="@drawable/ic_photo_library" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="50"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/grey_10" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/dashboar_btn_6"
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:layout_marginTop="@dimen/md_keylines"
+                android:layout_marginRight="@dimen/spacing_middle"
+                android:layout_marginBottom="@dimen/spacing_middle"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:background="@color/grey_40"
+                        android:foreground="@drawable/gradient_6"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_large"
+                        android:text="Configuracion"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@android:color/white" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_large">
+
+                        <ImageView
+                            android:layout_width="@dimen/spacing_middle"
+                            android:layout_height="@dimen/spacing_middle"
+                            android:layout_marginEnd="@dimen/spacing_medium"
+                            android:layout_marginRight="@dimen/spacing_medium"
+                            android:tint="@color/grey_10"
+                            app:srcCompat="@drawable/ic_schedule" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="45 minutes"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            android:textColor="@color/grey_10" />
+
+                        <ImageView
+                            android:layout_width="@dimen/spacing_middle"
+                            android:layout_height="@dimen/spacing_middle"
+                            android:layout_marginLeft="@dimen/spacing_medium"
+                            android:layout_marginRight="@dimen/spacing_medium"
+                            android:tint="@color/grey_10"
+                            app:srcCompat="@drawable/ic_photo_library" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="36"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            android:textColor="@color/grey_10" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+
         </LinearLayout>
 
+    </android.support.v4.widget.NestedScrollView>
 
-    </RelativeLayout>
-</ScrollView>
+</android.support.design.widget.CoordinatorLayout>

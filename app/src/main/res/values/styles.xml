@@ -11,6 +11,11 @@
         <item name="android:actionOverflowButtonStyle">@style/AppTheme.Overflow</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="AppTheme.Activity" parent="AppTheme" />
 
     <style name="AppTheme.Overflow" parent="Base.Widget.AppCompat.ActionButton.Overflow">
@@ -96,6 +101,5 @@
         <item name="android:layout_height">150dp</item>
     </style>
 
-    <style name="mAppTheme" parent="AppTheme" />
 
 </resources>

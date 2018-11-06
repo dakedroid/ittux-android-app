@@ -1,5 +1,6 @@
 package com.divaga.tecnologico;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -84,6 +85,9 @@ public class ConvocatoriaActivity extends AppCompatActivity implements Convocato
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convocatoria);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         ButterKnife.bind(this);
 
         FirebaseFirestore.setLoggingEnabled(true);
@@ -93,7 +97,7 @@ public class ConvocatoriaActivity extends AppCompatActivity implements Convocato
 
         // Get ${LIMIT} restaurants
         mQuery = mFirestore.collection("convocatoria")
-                //.orderBy("numComents", Query.Direction.DESCENDING)
+                .orderBy("datepublic", Query.Direction.DESCENDING)
                 .limit(LIMIT);
 
         // RecyclerView
@@ -208,6 +212,12 @@ public class ConvocatoriaActivity extends AppCompatActivity implements Convocato
         if (mAdapter != null) {
             mAdapter.stopListening();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     public void writeOnServer(final Convocatoria convocatoria, final String mUID) {

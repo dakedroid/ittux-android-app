@@ -21,12 +21,12 @@ public class Convocatoria {
 
     private String type;
     private String path;
-    private Date datelimit;
+    private String datelimit;
 
     public Convocatoria() {
     }
 
-    public Convocatoria(FirebaseUser user, String description, String username, String user_photo, Date datepublic, String category, String type, String path, Date datelimit) {
+    public Convocatoria(FirebaseUser user, String description, String username, String user_photo, Date datepublic, String category, String type, String path, String datelimit) {
         this.username = user.getDisplayName();
         if (TextUtils.isEmpty(this.username)) {
             this.username = user.getEmail();
@@ -96,11 +96,11 @@ public class Convocatoria {
         this.path = path;
     }
 
-    public Date getDatelimit() {
+    public String getDatelimit() {
         return datelimit;
     }
 
-    public void setDatelimit(Date datelimit) {
+    public void setDatelimit(String datelimit) {
         this.datelimit = datelimit;
     }
 }

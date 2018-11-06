@@ -47,6 +47,8 @@ public class AvisosActivity extends AppCompatActivity implements AvisosAdapter.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avisos);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         ButterKnife.bind(this);
 
         FirebaseFirestore.setLoggingEnabled(true);
@@ -114,6 +116,12 @@ public class AvisosActivity extends AppCompatActivity implements AvisosAdapter.O
         if (mAdapter != null) {
             mAdapter.stopListening();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     @Override

@@ -134,7 +134,6 @@ public class PublishPublicacionDialogFragment extends DialogFragment{
 
         publicacion.setDescription("");
         publicacion.setNumComments(0);
-        publicacion.setNumLikes(0);
         publicacion.setDescription(mDocumentoText.getText().toString());
 
 
