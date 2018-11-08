@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.divaga.tecnologico.R;
-
 import com.divaga.tecnologico.model.Comentario;
 import com.google.firebase.firestore.Query;
 
@@ -56,7 +55,6 @@ public class ComentarioAdapter extends FirestoreAdapter<ComentarioAdapter.ViewHo
 
         public void bind(Comentario comentario) {
             nameView.setText(comentario.getUserName());
-
             textView.setText(comentario.getText());
 
             if (comentario.getTimestamp() != null) {

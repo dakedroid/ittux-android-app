@@ -5,13 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.divaga.tecnologico.R;
-import com.divaga.tecnologico.model.Avisos;
-import com.divaga.tecnologico.model.Publicacion;
+import com.divaga.tecnologico.model.Aviso;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
@@ -20,6 +18,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * RecyclerView adapter for a list of Publicaciones
@@ -54,7 +53,7 @@ public class AvisosAdapter extends FirestoreAdapter<AvisosAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.avisos_item_user_photo)
-        ImageView userPhotoView;
+        CircleImageView userPhotoView;
 
         @BindView(R.id.avisos_item_username)
         TextView usernameView;
@@ -79,19 +78,19 @@ public class AvisosAdapter extends FirestoreAdapter<AvisosAdapter.ViewHolder> {
 
         public void bind(final DocumentSnapshot snapshot, final OnAvisosSelectedListener listener) {
 
-            Avisos avisos = snapshot.toObject(Avisos.class);
+            Aviso aviso = snapshot.toObject(Aviso.class);
             // Resources resources = itemView.getResources();
 
             // Load image
             Glide.with(userPhotoView.getContext())
-                    .load(avisos.getUser_photo())
+                    .load(aviso.getUser_photo())
                     .into(userPhotoView);
 
-            usernameView.setText(avisos.getUsername());
-            descriptionView.setText(avisos.getDescription());
+            usernameView.setText(aviso.getUsername());
+            descriptionView.setText(aviso.getDescription());
 
-            if (avisos.getDatepublic() != null) {
-                dateView.setText(FORMAT.format(avisos.getDatepublic()));
+            if (aviso.getDatepublic() != null) {
+                dateView.setText(FORMAT.format(aviso.getDatepublic()));
             }
 
 

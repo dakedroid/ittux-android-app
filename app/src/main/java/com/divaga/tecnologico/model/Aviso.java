@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Creado por Sixto el 09/09/18.
  */
-public class Avisos {
+public class Aviso {
 
     private String description;
     private String username;
@@ -16,10 +16,10 @@ public class Avisos {
     Date datepublic;
 
 
-    public Avisos() {
+    public Aviso() {
     }
 
-    public Avisos(String description, String username, String user_photo, Date datepublic, String category, String type, String path, Date datelimit) {
+    public Aviso(String description, String username, String user_photo, Date datepublic, String category, String type, String path, Date datelimit) {
         this.description = description;
         this.username = username;
         this.user_photo = user_photo;

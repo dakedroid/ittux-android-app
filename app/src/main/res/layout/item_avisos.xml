@@ -3,15 +3,19 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="3dp"
-    android:background="@color/colorPrimary"
+    android:layout_marginStart="@dimen/keylines"
+    android:layout_marginTop="@dimen/keylines"
+    android:layout_marginEnd="@dimen/keylines"
+    app:cardCornerRadius="3dp"
     android:orientation="vertical"
     android:padding="8dp">
     <!-- Header Layout-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/fui_bgEmail"
+        android:background="@drawable/gradient_1"
         android:orientation="vertical">
 
         <LinearLayout
@@ -19,7 +23,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/avisos_item_user_photo"
                 android:layout_width="@dimen/item_user_photo_w"
                 android:layout_height="@dimen/item_user_photo_h"
@@ -31,7 +35,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/facebook_avatar">
 
-            </ImageView>
+            </de.hdodenhof.circleimageview.CircleImageView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,9 +107,6 @@
                 android:tint="#4CAF50">
 
             </ImageView>
-
-
-
 
         </RelativeLayout>
     </LinearLayout>

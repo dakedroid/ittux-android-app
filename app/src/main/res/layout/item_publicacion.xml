@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="3dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="@dimen/keylines"
+    android:layout_marginEnd="@dimen/keylines"
+    android:layout_marginBottom="@dimen/keylines"
+    app:cardCornerRadius="3dp"
     android:background="?attr/selectableItemBackground"
     android:orientation="vertical"
     android:padding="8dp">
@@ -91,8 +95,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/keylines"
+                android:maxHeight="400dp"
                 android:contentDescription="@string/publicacion_item_content_description_imagen_body"
-                android:maxHeight="380dp"
+                android:scaleType="centerInside"
                 android:minHeight="200dp"
                 android:src="@drawable/pizza_monster">
 

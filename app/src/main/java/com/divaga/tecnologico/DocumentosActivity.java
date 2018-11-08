@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.divaga.tecnologico.adapter.DocumentoAdapter;
 import com.divaga.tecnologico.fragments.PublishDocumentDialogFragment;
 import com.divaga.tecnologico.model.Documento;
+import com.divaga.tecnologico.model.User;
 import com.divaga.tecnologico.sesion.BaseActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +35,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -41,6 +44,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,9 +64,17 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
 
     private  Documento mDocumento;
 
+    private static String userPhotoUrl;
+
     private PublishDocumentDialogFragment mPublishDialog;
 
     private static final int LIMIT = 50;
+    private static String userName;
+    private static String userPerssions;
+    private CardView publishDialogLayout;
+
+
+
 
 
     @BindView(R.id.recycler_documentos)
@@ -119,7 +132,11 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
 
         //writeOnServer();
 
+        publishDialogLayout = findViewById(R.id.publish_dialog_documento);
+
         mPublishDialog = new PublishDocumentDialogFragment();
+
+        getUser();
 
     }
 
@@ -160,6 +177,60 @@ public class DocumentosActivity extends BaseActivity implements DocumentoAdapter
     public boolean onSupportNavigateUp(){
         finish();
         return true;
+    }
+
+
+    private void getUser() {
+
+
+        String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        final ArrayList<User> mArrayList = new ArrayList<>();
+
+        Log.i("PRUEBITA", Uid);
+
+        Query mQuery = mFirestore.collection("usuarios")
+                .whereEqualTo("userId", Uid)
+                .limit(1);
+
+
+        mQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot documentSnapshot) {
+                if (documentSnapshot.isEmpty()) {
+                    Log.d("PRUEBITA", "onSuccess: LIST EMPTY");
+                    return;
+                } else {
+                    // Convert the whole Query Snapshot to a list
+                    // of objects directly! No need to fetch each
+                    // document.
+
+                    List<User> types = documentSnapshot.toObjects(User.class);
+
+                    mArrayList.addAll(types);
+
+                    userPhotoUrl = mArrayList.get(0).getPhoto();
+
+                    userName = mArrayList.get(0).getUserName();
+
+                    userPerssions = mArrayList.get(0).getPermisos();
+
+
+                    if (userPerssions.contains("4")) {
+
+                        publishDialogLayout.setVisibility(View.VISIBLE);
+
+                    } else {
+
+                        publishDialogLayout.setVisibility(View.GONE);
+
+                    }
+
+                }
+            }
+
+        });
+
     }
 
     public void writeOnServer(final Documento documento) {

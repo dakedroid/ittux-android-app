@@ -1,6 +1,5 @@
 package com.divaga.tecnologico;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -25,8 +24,6 @@ import android.widget.Toast;
 import com.divaga.tecnologico.adapter.ConvocatoriaAdapter;
 import com.divaga.tecnologico.fragments.PublishConvocatoriaDialogFragment;
 import com.divaga.tecnologico.model.Convocatoria;
-import com.divaga.tecnologico.model.Documento;
-import com.divaga.tecnologico.model.Publicacion;
 import com.divaga.tecnologico.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -167,7 +164,7 @@ public class ConvocatoriaActivity extends AppCompatActivity implements Convocato
 
                     userPerssions = mArrayList.get(0).getPermisos();
 
-                    if (userPerssions.contains("2")) {
+                    if (userPerssions.contains("3")) {
 
                         publishDialogLayout.setVisibility(View.VISIBLE);
 

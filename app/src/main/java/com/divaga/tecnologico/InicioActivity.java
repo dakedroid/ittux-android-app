@@ -1,6 +1,5 @@
 package com.divaga.tecnologico;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,7 +42,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Transaction;
 import com.google.firebase.firestore.WriteBatch;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -384,7 +381,7 @@ public class InicioActivity extends AppCompatActivity implements PublicacionAdap
                     userPerssions = mArrayList.get(0).getPermisos();
 
 
-                    if (userPerssions.contains("1")) {
+                    if (userPerssions.contains("2")) {
 
                         publishDialogLayout.setVisibility(View.VISIBLE);
 

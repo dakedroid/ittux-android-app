@@ -1,21 +1,23 @@
 package com.divaga.tecnologico;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.bumptech.glide.Glide;
 import com.divaga.tecnologico.adapter.AvisosAdapter;
-import com.divaga.tecnologico.adapter.PublicacionAdapter;
-import com.divaga.tecnologico.model.Avisos;
-import com.divaga.tecnologico.model.Publicacion;
+import com.divaga.tecnologico.fragments.PublishAvisoDialogFragment;
+import com.divaga.tecnologico.model.Aviso;
+import com.divaga.tecnologico.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,16 +25,30 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AvisosActivity extends AppCompatActivity implements AvisosAdapter.OnAvisosSelectedListener{
+public class AvisosActivity extends AppCompatActivity implements AvisosAdapter.OnAvisosSelectedListener, PublishAvisoDialogFragment.AvisoListener, View.OnClickListener {
 
 
     private FirebaseFirestore mFirestore;
     private Query mQuery;
+
+    private static String userPhotoUrl;
+    private static String userName;
+    private static String userPerssions;
+
+    public ProgressDialog mProgressDialog;
+
+    private CardView publishDialogLayout;
+
+    private PublishAvisoDialogFragment mPublishDialog;
 
     private AvisosAdapter mAdapter;
 
@@ -49,6 +65,11 @@ public class AvisosActivity extends AppCompatActivity implements AvisosAdapter.O
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        publishDialogLayout = findViewById(R.id.publish_dialog_aviso);
+
+        mPublishDialog = new PublishAvisoDialogFragment();
+
         ButterKnife.bind(this);
 
         FirebaseFirestore.setLoggingEnabled(true);
@@ -56,11 +77,11 @@ public class AvisosActivity extends AppCompatActivity implements AvisosAdapter.O
         // Firestore
         mFirestore = FirebaseFirestore.getInstance();
 
-
+        mAvisosRecycler.setNestedScrollingEnabled(false);
 
         // Get ${LIMIT} restaurants
-        mQuery = mFirestore.collection("avisos")
-                //.orderBy("numComents", Query.Direction.DESCENDING)
+        mQuery = mFirestore.collection("aviso")
+                .orderBy("datepublic", Query.Direction.DESCENDING)
                 .limit(LIMIT);
 
         // RecyclerView
@@ -91,9 +112,9 @@ public class AvisosActivity extends AppCompatActivity implements AvisosAdapter.O
         mAvisosRecycler.setNestedScrollingEnabled(false);
 
 
+        getUser();
 
 
-         writeOnServer();
     }
 
 
@@ -137,33 +158,36 @@ public class AvisosActivity extends AppCompatActivity implements AvisosAdapter.O
 
     public void writeOnServer() {
 
+
+    }
+
+
+    @Override
+    public void onSubirAviso(Aviso aviso) {
+
+        showProgressDialog();
+
+
         WriteBatch batch = mFirestore.batch();
 
-        DocumentReference restRef = mFirestore.collection("avisos").document();
-        Avisos avisos = new Avisos();
+        DocumentReference restRef = mFirestore.collection("aviso").document();
 
-
-        avisos.setUsername("Depto. Sistema y Computacion");
-        avisos.setDescription("Se les comunica a los estudiantes ");
-        avisos.setUser_photo("https://www.ittux.edu.mx/sites/default/files/styles/medium/public/tec-transp.png?itok=v_2qwjVj");
-
-
-
+        aviso.setUsername(userName);
+        aviso.setUser_photo(userPhotoUrl);
 
         // Add restaurant
-        batch.set(restRef, avisos);
+        batch.set(restRef, aviso);
 
-        /*
-        // Add  to subcollection
-        for (Comentario comentarios : comentarioss) {
-            batch.set(restRef.collection("comentarios").document(), comentario);
-        }
-        */
 
         batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+
+
+                    hideProgressDialog();
+
+
                     Log.d("AvisosActivity", "Write batch succeeded.");
                 } else {
                     Log.w("AvisosActivity", "write batch failed.", task.getException());
@@ -172,5 +196,82 @@ public class AvisosActivity extends AppCompatActivity implements AvisosAdapter.O
         });
     }
 
+    private void getUser() {
 
+
+        String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        final ArrayList<User> mArrayList = new ArrayList<>();
+
+        Log.i("PRUEBITA", Uid);
+
+        Query mQuery = mFirestore.collection("usuarios")
+                .whereEqualTo("userId", Uid)
+                .limit(1);
+
+
+        mQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot documentSnapshot) {
+                if (documentSnapshot.isEmpty()) {
+                    Log.d("PRUEBITA", "onSuccess: LIST EMPTY");
+                    return;
+                } else {
+                    // Convert the whole Query Snapshot to a list
+                    // of objects directly! No need to fetch each
+                    // document.
+
+                    List<User> types = documentSnapshot.toObjects(User.class);
+
+                    mArrayList.addAll(types);
+
+                    userPhotoUrl = mArrayList.get(0).getPhoto();
+
+                    userName = mArrayList.get(0).getUserName();
+
+                    userPerssions = mArrayList.get(0).getPermisos();
+
+
+                    if (userPerssions.contains("1")) {
+
+                        publishDialogLayout.setVisibility(View.VISIBLE);
+
+                    } else {
+
+                        publishDialogLayout.setVisibility(View.GONE);
+
+                    }
+
+                }
+            }
+
+        });
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+
+        if (id == R.id.activity_aviso_publish) {
+            mPublishDialog.show(getSupportFragmentManager(), PublishAvisoDialogFragment.TAG);
+        }
+    }
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+        mProgressDialog.setCanceledOnTouchOutside(false);
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
 }

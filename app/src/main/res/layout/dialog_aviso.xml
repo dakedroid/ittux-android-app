@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginBottom="@dimen/keylines">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/keylines">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/md_keylines">
+
+
+                <TextView
+                    android:id="@+id/dialog_aviso_cerrar"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/square"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text=" X "
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/md_keylines"
+                android:layout_marginEnd="@dimen/md_keylines"
+                android:text="Escribe algo" />
+
+            <EditText
+
+                android:id="@+id/dialog_aviso_edtx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="Escribe algo ..."
+                android:minHeight="80dp"
+                android:padding="@dimen/md_keylines"
+                android:textColor="@color/colorAccent" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/dialog_aviso_btn_publicar"
+                    style="@style/Base.TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/md_keylines"
+                    android:layout_marginTop="@dimen/keylines"
+                    android:layout_marginEnd="@dimen/keylines"
+                    android:layout_marginBottom="@dimen/keylines"
+                    android:background="@drawable/square"
+                    android:padding="8dp"
+                    android:text="Publicar"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</android.support.v7.widget.CardView>
+
+
