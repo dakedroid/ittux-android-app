@@ -1,6 +1,9 @@
 package com.divaga.tecnologico;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +27,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +40,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener  {
 
+
+    private static final String TAG = "DashboardActivity";
 
     private static String userPerssions;
 
@@ -97,6 +105,59 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         mFirestore = FirebaseFirestore.getInstance();
 
         getUserData();
+
+        initNotifications();
+
+    }
+
+    public void initNotifications() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create channel to show notifications.
+            String channelId = getString(R.string.default_notification_channel_id);
+            String channelName = getString(R.string.default_notification_channel_name);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_LOW));
+        }
+
+        if (getIntent().getExtras() != null) {
+            for (String key : getIntent().getExtras().keySet()) {
+                Object value = getIntent().getExtras().get(key);
+            }
+        }
+
+        FirebaseMessaging.getInstance().subscribeToTopic("tecnologico_android")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = getString(R.string.msg_subscribed);
+                        if (!task.isSuccessful()) {
+                            msg = getString(R.string.msg_subscribe_failed);
+                        }
+                        Log.d(TAG, msg);
+                        //Toast.makeText(DashboardActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        // Log and toast
+                        String msg = getString(R.string.msg_token_fmt, token);
+                        // Log.d("PRUEBA_TOKEN", msg);
+                        // Toast.makeText(DashboardActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 
@@ -173,7 +234,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                         Toast.makeText(DashboardActivity.this, userPerssions, Toast.LENGTH_SHORT).show();
 
 
-                        if (userPerssions.contains("6")) {
+                        if (userPerssions.contains("5")) {
 
                             LayoutConfiguracionCardView.setVisibility(View.VISIBLE);
 
@@ -226,7 +287,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
 
     }
-
 
 
     private void signOut() {

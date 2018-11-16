@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="146dp"
+    android:layout_marginTop="@dimen/keylines">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:orientation="horizontal">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_asignar_permisos_imagen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/keylines"
+            android:layout_marginTop="@dimen/keylines"
+            android:layout_marginBottom="@dimen/keylines"
+            android:contentDescription="@string/item_documentos_imagen_documento_content_description"
+            android:padding="@dimen/md_keylines"
+            android:src="@drawable/facebook_avatar">
+
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+        <LinearLayout
+            android:id="@+id/item_asignar_permisos_description_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/keylines"
+            android:layout_marginTop="@dimen/keylines"
+            android:layout_marginBottom="@dimen/keylines"
+            android:layout_toStartOf="@id/item_asignar_permisos_boton"
+            android:layout_toEndOf="@id/item_asignar_permisos_imagen"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_asignar_permisos_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/keylines"
+                android:maxLines="2"
+                android:text="kevin.molina.go@gmail.com"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/item_asignar_permisos_numero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Avisos, Publicaciones, Convocatorias, Documentos, Administrador"
+                android:textSize="12sp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_asignar_permisos_boton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/keylines"
+            android:layout_marginEnd="@dimen/keylines"
+            android:background="@drawable/square_2"
+            android:orientation="vertical"
+            android:padding="@dimen/keylines">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/md_keylines"
+                android:layout_marginEnd="@dimen/md_keylines"
+                android:contentDescription="@string/item_documento_imagen_descarga_content_description"
+                android:src="@drawable/user"
+                android:tint="#2196F3">
+
+            </ImageView>
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Asignar" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
+

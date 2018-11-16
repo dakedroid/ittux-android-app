@@ -1,8 +1,11 @@
 package com.divaga.tecnologico;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.divaga.tecnologico.permissions.AsignarPermisosActivity;
 
 public class PermisosActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,7 +23,7 @@ public class PermisosActivity extends AppCompatActivity implements View.OnClickL
         int id = view.getId();
 
         if(id == R.id.permisos_btn_1){
-
+            startActivity(new Intent(PermisosActivity.this, AsignarPermisosActivity.class));
 
         }else if (id == R.id.permisos_btn_2){
 

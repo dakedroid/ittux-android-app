@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/tecnologico"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InicioActivity"></activity>
+        <activity android:name=".InicioActivity" />
         <activity android:name=".DetailActivity" />
         <activity
             android:name=".sesion.LoginActivity"
@@ -24,11 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DocumentosActivity"></activity>
+        <activity android:name=".DocumentosActivity" />
         <activity
             android:name=".sesion.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".DashboardActivityDepreceated"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".DashboardActivityDepreceated" />
 
         <receiver android:name=".Utils.mFacebookBroadcastReceiver">
             <intent-filter>
@@ -62,12 +62,45 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".AvisosActivity"></activity>
+        <activity android:name=".AvisosActivity">
+            <intent-filter>
+                <action android:name="AvisosActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ConvocatoriaActivity"></activity>
         <activity
             android:name=".DashboardActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".PermisosActivity"></activity>
+
+        <!-- Notificaciones Push -->
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/tecnologico" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <service android:name=".Utils.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".Utils.MyJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".permissions.AsignarPermisosActivity"></activity>
     </application>
 
 </manifest>
