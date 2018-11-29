@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.divaga.tecnologico.permissions.AsignarPermisosActivity;
+import com.divaga.tecnologico.permissions.SendNotification;
 
 public class PermisosActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,7 +34,7 @@ public class PermisosActivity extends AppCompatActivity implements View.OnClickL
 
         }else if (id == R.id.permisos_btn_4){
 
-
+            startActivity(new Intent(PermisosActivity.this, SendNotification.class));
         }
     }
 

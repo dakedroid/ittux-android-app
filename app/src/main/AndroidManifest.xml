@@ -69,11 +69,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ConvocatoriaActivity"></activity>
+        <activity android:name=".ConvocatoriaActivity" />
         <activity
             android:name=".DashboardActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".PermisosActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PermisosActivity" />
 
         <!-- Notificaciones Push -->
 
@@ -100,7 +100,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".permissions.AsignarPermisosActivity"></activity>
+        <activity android:name=".permissions.AsignarPermisosActivity" />
+        <activity android:name=".permissions.SendNotification"></activity>
     </application>
 
 </manifest>

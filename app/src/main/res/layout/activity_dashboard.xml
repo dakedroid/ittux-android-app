@@ -158,28 +158,6 @@
                             android:tint="@color/grey_10"
                             app:srcCompat="@drawable/ic_schedule" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="45 minutes"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_10" />
-
-                        <ImageView
-                            android:layout_width="@dimen/spacing_middle"
-                            android:layout_height="@dimen/spacing_middle"
-                            android:layout_marginLeft="@dimen/spacing_medium"
-                            android:layout_marginRight="@dimen/spacing_medium"
-                            android:tint="@color/grey_10"
-                            app:srcCompat="@drawable/ic_photo_library" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="36"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_10" />
-
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -239,28 +217,6 @@
                                 android:tint="@color/grey_10"
                                 app:srcCompat="@drawable/ic_schedule" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="23 minutes"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_10" />
-
-                            <ImageView
-                                android:layout_width="@dimen/spacing_middle"
-                                android:layout_height="@dimen/spacing_middle"
-                                android:layout_marginLeft="@dimen/spacing_medium"
-                                android:layout_marginRight="@dimen/spacing_medium"
-                                android:tint="@color/grey_10"
-                                app:srcCompat="@drawable/ic_photo_library" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="15"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_10" />
-
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -311,28 +267,6 @@
                                 android:layout_marginRight="@dimen/spacing_medium"
                                 android:tint="@color/grey_10"
                                 app:srcCompat="@drawable/ic_schedule" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="18 minutes"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_10" />
-
-                            <ImageView
-                                android:layout_width="@dimen/spacing_middle"
-                                android:layout_height="@dimen/spacing_middle"
-                                android:layout_marginLeft="@dimen/spacing_medium"
-                                android:layout_marginRight="@dimen/spacing_medium"
-                                android:tint="@color/grey_10"
-                                app:srcCompat="@drawable/ic_photo_library" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="50"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_10" />
 
                         </LinearLayout>
 
@@ -394,28 +328,6 @@
                                 android:tint="@color/grey_10"
                                 app:srcCompat="@drawable/ic_schedule" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="23 minutes"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_10" />
-
-                            <ImageView
-                                android:layout_width="@dimen/spacing_middle"
-                                android:layout_height="@dimen/spacing_middle"
-                                android:layout_marginLeft="@dimen/spacing_medium"
-                                android:layout_marginRight="@dimen/spacing_medium"
-                                android:tint="@color/grey_10"
-                                app:srcCompat="@drawable/ic_photo_library" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="15"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_10" />
-
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -466,28 +378,6 @@
                                 android:layout_marginRight="@dimen/spacing_medium"
                                 android:tint="@color/grey_10"
                                 app:srcCompat="@drawable/ic_schedule" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="18 minutes"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_10" />
-
-                            <ImageView
-                                android:layout_width="@dimen/spacing_middle"
-                                android:layout_height="@dimen/spacing_middle"
-                                android:layout_marginLeft="@dimen/spacing_medium"
-                                android:layout_marginRight="@dimen/spacing_medium"
-                                android:tint="@color/grey_10"
-                                app:srcCompat="@drawable/ic_photo_library" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="50"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/grey_10" />
 
                         </LinearLayout>
 
@@ -544,28 +434,6 @@
                             android:layout_marginRight="@dimen/spacing_medium"
                             android:tint="@color/grey_10"
                             app:srcCompat="@drawable/ic_schedule" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="45 minutes"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_10" />
-
-                        <ImageView
-                            android:layout_width="@dimen/spacing_middle"
-                            android:layout_height="@dimen/spacing_middle"
-                            android:layout_marginLeft="@dimen/spacing_medium"
-                            android:layout_marginRight="@dimen/spacing_medium"
-                            android:tint="@color/grey_10"
-                            app:srcCompat="@drawable/ic_photo_library" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="36"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                            android:textColor="@color/grey_10" />
 
                     </LinearLayout>
 
